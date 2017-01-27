@@ -46,19 +46,16 @@ namespace DASPWorkstation
             WriteableBitmap signalBmp = BitmapFactory.New(1270, 202);
             Image waveform = new Image();
 
-            var signalDefs = _signalHelper.GetValues();
-            foreach(var def in signalDefs)
+            var signal = _signalGenerator.GenerateSignal(_signalHelper.GetValues());
+            var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
+            using (signalBmp.GetBitmapContext())
             {
-                var signal = _signalGenerator.GenerateSignal(def);
-                var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
-                using (signalBmp.GetBitmapContext())
+                for (int n = 1; n < 1270; n++)
                 {
-                    for (int n = 1; n < 1270; n++)
-                    {
-                        signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
-                    }
+                    signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
                 }
             }
+            
 
             waveform.Source = signalBmp;
             

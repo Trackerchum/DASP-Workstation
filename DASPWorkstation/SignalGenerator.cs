@@ -8,7 +8,9 @@ namespace DASPWorkstation
 {
     public class SignalGenerator : ISignalGenerator
     {
-        public List<float> GenerateSignal(SignalDefinition signalDefinition)
+        private SignalHelper _signalHelper = new SignalHelper();
+
+        public List<float> GenerateSignal(SignalHelper.GetValues())
         {
             var res = new List<float>();
             for (int n = 0; n < signalDefinition.SamplingRate; n++)
@@ -21,6 +23,6 @@ namespace DASPWorkstation
 
     public interface ISignalGenerator
     {
-        List<float> GenerateSignal(SignalDefinition signalDefinition);
+        List<float> GenerateSignal(SignalHelper.GetValues());
     }
 }
