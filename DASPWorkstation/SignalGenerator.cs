@@ -22,7 +22,7 @@ namespace DASPWorkstation
                 }
             }
 
-            for (int x = 0; x < signalParameters.Count; x++)
+            for (int x = 0; x < signalParameters.Count; x++) // this class no work proper
             {
                 for (int n = 0; n < signalParameters[0].SamplingRate; n++)
                 {
