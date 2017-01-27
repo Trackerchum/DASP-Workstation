@@ -26,6 +26,6 @@ namespace DASPWorkstation
 
     public interface ISignalGenerator
     {
-        List<float> GenerateSignal((List<SignalDefinition> signalParameters);
+        List<float> GenerateSignal(List<SignalDefinition> signalParameters);
     }
 }
