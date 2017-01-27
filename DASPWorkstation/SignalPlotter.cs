@@ -11,7 +11,17 @@ namespace DASPWorkstation
         public List<int> ScaleSignal(List<float> signal, int samplingRate)
         {
             var scaledSignal = new List<int>();
-            float maxSample = 1;
+            float maxSample;
+
+            if (signal.Max() > Math.Sqrt((signal.Min() * signal.Min())))
+            {
+                maxSample = signal.Max();
+            }
+            else
+            {
+                maxSample = (float)Math.Sqrt((signal.Min() * signal.Min()));
+            }
+
             for (int n = 0; n < 1270; n++)
             {
                 scaledSignal.Add((int)(((signal[n] * -1 / maxSample) + 1) * 100));

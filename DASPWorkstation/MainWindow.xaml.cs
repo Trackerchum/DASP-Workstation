@@ -32,7 +32,7 @@ namespace DASPWorkstation
 
         private void addSineBtn_Click(object sender, RoutedEventArgs e)
         {
-            var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text), samplingRate);
+            var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text), samplingRate); // works
             _signalHelper.AddSine(signalDefinition);
 
             sineWavesCmb.Items.Add(signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text)));
@@ -46,8 +46,8 @@ namespace DASPWorkstation
             WriteableBitmap signalBmp = BitmapFactory.New(1270, 202);
             Image waveform = new Image();
 
-            var signal = _signalGenerator.GenerateSignal(_signalHelper.GetValues());
-            var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
+            var signal = _signalGenerator.GenerateSignal(_signalHelper.GetValues()); // gets sig param
+            var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate); // passes params, needs signal
             using (signalBmp.GetBitmapContext())
             {
                 for (int n = 1; n < 1270; n++)

@@ -8,12 +8,12 @@ namespace DASPWorkstation
 {
     public class Signal
     {
-        public SignalDefinition Definition;
+        /*public SignalDefinition Definition;
         public List<float> Waveform;
 
         public Signal(SignalDefinition definition, ISignalGenerator generator)
         {
             Waveform = generator.GenerateSignal(definition);
-        }
+        }*/
     }
 }
