@@ -64,6 +64,7 @@
     <Compile Include="SignalGenerator.cs" />
     <Compile Include="SignalHelper.cs" />
     <Compile Include="SignalPlotter.cs" />
+    <Compile Include="Validator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
