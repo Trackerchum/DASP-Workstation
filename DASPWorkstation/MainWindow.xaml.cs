@@ -21,8 +21,8 @@ namespace DASPWorkstation
     public partial class MainWindow : Window
     {
         int samplingRate = 48000;
-        public List<float> signal = new List<float>(); 
-        private SignalHelper _signalGenerator = new SignalHelper();
+        private SignalHelper _signalHelper = new SignalHelper();
+        private SignalGenerator _signalGenerator = new SignalGenerator();
 
         public MainWindow()
         {
@@ -33,7 +33,7 @@ namespace DASPWorkstation
         private void addSineBtn_Click(object sender, RoutedEventArgs e)
         {
             var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text), samplingRate);
-            _signalGenerator.AddSine(signalDefinition);
+            _signalHelper.AddSine(signalDefinition);
 
             sineWavesCmb.Items.Add(signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text)));
             amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
@@ -45,15 +45,23 @@ namespace DASPWorkstation
             var signalPlotter = new SignalPlotter();
             WriteableBitmap signalBmp = BitmapFactory.New(1270, 202);
             Image waveform = new Image();
-            var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
-            using (signalBmp.GetBitmapContext())
+
+            var signalDefs = _signalHelper.GetValues();
+            foreach(var def in signalDefs)
             {
-                for (int n = 1; n < 1270; n++)
+                var signal = _signalGenerator.GenerateSignal(def);
+                var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
+                using (signalBmp.GetBitmapContext())
                 {
-                    signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
+                    for (int n = 1; n < 1270; n++)
+                    {
+                        signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
+                    }
                 }
-                waveform.Source = signalBmp;
             }
+
+            waveform.Source = signalBmp;
+            
             signalCanvas.Children.Clear();
             signalCanvas.Children.Add(waveform);
         }
