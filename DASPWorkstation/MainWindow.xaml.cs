@@ -55,8 +55,6 @@ namespace DASPWorkstation
                     signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
                 }
             }
-            
-
             waveform.Source = signalBmp;
             
             signalCanvas.Children.Clear();

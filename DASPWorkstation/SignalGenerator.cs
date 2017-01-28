@@ -22,11 +22,11 @@ namespace DASPWorkstation
                 }
             }
 
-            for (int x = 0; x < signalParameters.Count; x++) // this class no work proper
+            for (int x = 0; x < signalParameters.Count; x++)
             {
                 for (int n = 0; n < signalParameters[0].SamplingRate; n++)
                 {
-                    res[n] = (signalParameters[x].Amplitude * (float)(Math.Sin(2 * Math.PI * n * signalParameters[x].Frequency / signalParameters[x].SamplingRate + (signalParameters[x].Phase * (Math.PI / 180)))));
+                    res[n] = res[n] + (signalParameters[x].Amplitude * (float)(Math.Sin(2 * Math.PI * n * signalParameters[x].Frequency / signalParameters[0].SamplingRate + (signalParameters[x].Phase * (Math.PI / 180)))));
                 }
             }
             return res;
