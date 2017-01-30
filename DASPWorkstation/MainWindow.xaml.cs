@@ -87,5 +87,10 @@ namespace DASPWorkstation
         {
 
         }
+
+        private void clearSignalBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

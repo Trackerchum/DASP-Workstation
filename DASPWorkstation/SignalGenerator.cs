@@ -9,16 +9,17 @@ namespace DASPWorkstation
     public class SignalGenerator : ISignalGenerator
     {
         private SignalHelper _signalHelper = new SignalHelper();
+        public List<float> currentSignal = new List<float>();
 
         public List<float> GenerateSignal(List<SignalDefinition> signalParameters)
         {
-            var res = new List<float>();
+            currentSignal = new List<float>();
 
-            if (res.Count == 0)
+            if (currentSignal.Count == 0)
             {
                 for (int n = 0; n < signalParameters[0].SamplingRate; n++)
                 {
-                    res.Add(0);
+                    currentSignal.Add(0);
                 }
             }
 
@@ -26,10 +27,15 @@ namespace DASPWorkstation
             {
                 for (int n = 0; n < signalParameters[0].SamplingRate; n++)
                 {
-                    res[n] = res[n] + (signalParameters[x].Amplitude * (float)(Math.Sin(2 * Math.PI * n * signalParameters[x].Frequency / signalParameters[0].SamplingRate + (signalParameters[x].Phase * (Math.PI / 180)))));
+                    currentSignal[n] = currentSignal[n] + (signalParameters[x].Amplitude * (float)(Math.Sin(2 * Math.PI * n * signalParameters[x].Frequency / signalParameters[0].SamplingRate + (signalParameters[x].Phase * (Math.PI / 180)))));
                 }
             }
-            return res;
+            return currentSignal;
+        }
+
+        public List<float> GetCurrentSignal()
+        {
+            return currentSignal;
         }
     }
 

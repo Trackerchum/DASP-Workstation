@@ -35,6 +35,7 @@
             <ComboBoxItem Content="96kHz" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="192kHz" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
+        <Button x:Name="clearSignalBtn" Content="Clear Signal" Canvas.Left="350" Canvas.Top="185" Width="134" Height="26" Click="clearSignalBtn_Click" />
 
         <Canvas Name="signalCanvas" Height="202" Canvas.Left="70" Canvas.Top="240" Width="1270" >
             <Canvas.Background>
