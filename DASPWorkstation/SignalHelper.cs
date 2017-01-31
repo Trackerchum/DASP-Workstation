@@ -12,9 +12,9 @@ namespace DASPWorkstation
 
         public void AddSine(SignalDefinition signalDefinition)
         {
-            _signals.Add(new SignalDefinition(signalDefinition.Amplitude, signalDefinition.Frequency, signalDefinition.Phase, signalDefinition.SamplingRate));
-            var signal = new SignalDefinition(signalDefinition.Amplitude, signalDefinition.Frequency, signalDefinition.Phase, signalDefinition.SamplingRate);
+            _signals.Add(new SignalDefinition(signalDefinition.Amplitude, signalDefinition.Frequency, signalDefinition.Phase));
         }
+
 
         public List<SignalDefinition> GetValues()
         {
@@ -22,5 +22,17 @@ namespace DASPWorkstation
         }
 
 
+        public void UpdateValues(SignalDefinition signalDefinition, int n)
+        {
+            _signals[n].Amplitude = signalDefinition.Amplitude;
+            _signals[n].Frequency = signalDefinition.Frequency;
+            _signals[n].Phase = signalDefinition.Phase;
+        }
+
+
+        public void ClearValues()
+        {
+            _signals.Clear();
+        }
     }
 }

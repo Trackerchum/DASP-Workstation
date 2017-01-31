@@ -13,31 +13,29 @@
         </Canvas.Background>
 
         <Label x:Name="labela" Content="Amplitude" Canvas.Left="70" Canvas.Top="60"/>
-        <Label x:Name="labelf" Content="Frequency" Canvas.Left="70" Canvas.Top="90"/>
-        <Label x:Name="labelp" Content="Phase" Canvas.Left="70" Canvas.Top="120"/>
+        <Label x:Name="labelf" Content="Frequency" Canvas.Left="70" Canvas.Top="98"/>
+        <Label x:Name="labelp" Content="Phase" Canvas.Left="70" Canvas.Top="137"/>
 
         <TextBox x:Name="amplitude" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="160" Canvas.Top="64" />
-        <TextBox x:Name="frequency" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="160" Canvas.Top="94" />
-        <TextBox x:Name="phase" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="160" Canvas.Top="124" />
+        <TextBox x:Name="frequency" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="160" Canvas.Top="102" />
+        <TextBox x:Name="phase" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="160" Canvas.Top="141" />
 
         <Button x:Name="addSineBtn" Content="Add Sine Wave" Canvas.Left="350" Canvas.Top="64" Width="134" Height="26" Click="addSineBtn_Click" />
-        <Label x:Name="label1" Content="Signals" Canvas.Left="350" Canvas.Top="98"/>
-        <ComboBox x:Name="sineWavesCmb" Canvas.Left="350" Canvas.Top="122" Width="188" Height="26" SelectionChanged="sineWavesCmb_SelectionChanged" >
-            <ComboBoxItem Content="" HorizontalAlignment="Left" Width="186"/>
-        </ComboBox>
+        <Label x:Name="label1" Content="Signals:" Canvas.Left="291" Canvas.Top="98"/>
+        <ComboBox x:Name="sineWavesCmb" Canvas.Left="350" Canvas.Top="99" Width="188" Height="26" SelectionChanged="sineWavesCmb_SelectionChanged" />
+        <Button x:Name="editSineBtn" Content="Edit Sine Wave" Canvas.Left="350" Canvas.Top="134" Width="134" Height="26" Click="editSineBtn_Click" />
 
-
-        <Button x:Name="plotSignalBtn" Content="Plot Signal" Canvas.Left="160" Canvas.Top="185" Width="134" Height="26" Click="plotSignalBtn_Click"/>
-        <Label x:Name="label11" Content="Sampling Rate" Canvas.Left="1050" Canvas.Top="185"/>
-        <ComboBox x:Name="samplingRateCmb" SelectedIndex="1" Canvas.Left="1152" Canvas.Top="185" Width="188" Height="26" SelectionChanged="samplingRateCmb_SelectionChanged">
+        <Button x:Name="plotSignalBtn" Content="Plot Signal" Canvas.Left="160" Canvas.Top="204" Width="134" Height="26" Click="plotSignalBtn_Click"/>
+        <Label x:Name="label11" Content="Sampling Rate:" Canvas.Left="1050" Canvas.Top="204"/>
+        <ComboBox x:Name="samplingRateCmb" SelectedIndex="1" Canvas.Left="1152" Canvas.Top="204" Width="188" Height="26" SelectionChanged="samplingRateCmb_SelectionChanged">
             <ComboBoxItem Content="44.1kHz" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="48kHz" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="96kHz" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="192kHz" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
-        <Button x:Name="clearSignalBtn" Content="Clear Signal" Canvas.Left="350" Canvas.Top="185" Width="134" Height="26" Click="clearSignalBtn_Click" />
+        <Button x:Name="clearSignalBtn" Content="Clear Signal" Canvas.Left="350" Canvas.Top="204" Width="134" Height="26" Click="clearSignalBtn_Click" />
 
-        <Canvas Name="signalCanvas" Height="202" Canvas.Left="70" Canvas.Top="240" Width="1270" >
+        <Canvas Name="signalCanvas" Height="202" Canvas.Left="70" Canvas.Top="247" Width="1270" >
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="5"/>
             </Canvas.Background>
