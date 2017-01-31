@@ -93,9 +93,9 @@ namespace DASPWorkstation
                 addSineBtn.IsEnabled = true;
                 editSineBtn.Content = "Edit Sine Wave";
                 var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text)); 
-                sineWavesCmb.Items[n] = signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text)); // add new signal to cmb
+                sineWavesCmb.Items[n] = signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
                 amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
-                _signalHelper.UpdateValues(signalDefinition, n);// update new signal parameters
+                _signalHelper.UpdateValues(signalDefinition, n);
             }
         }
 

@@ -18,7 +18,7 @@ namespace DASPWorkstation
 
         public List<SignalDefinition> GetValues()
         {
-            return _signals; // returns list of signal coefficients/constants
+            return _signals;
         }
 
 
