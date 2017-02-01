@@ -14,11 +14,8 @@ namespace DASPWorkstation
         public List<float> GenerateSignal(List<SignalDefinition> signalParameters, int samplingRate)
         {
             currentSignal = new List<float>();
-
-            if (currentSignal.Count == 0)
-            {
-                BlankSignal(samplingRate);
-            }
+            
+            BlankSignal(samplingRate);
 
             for (int x = 0; x < signalParameters.Count; x++)
             {
@@ -39,9 +36,18 @@ namespace DASPWorkstation
 
         public void BlankSignal(int samplingRate)
         {
-            for (int n = 0; n < samplingRate; n++)
+            if (currentSignal.Count == 0)
             {
-                currentSignal.Add(0);
+                for (int n = 0; n < samplingRate; n++)
+                {
+                    currentSignal.Add(0);
+                }
+            }
+            else {
+                for (int n = 0; n < samplingRate; n++)
+                {
+                    currentSignal[n] = 0;
+                }
             }
         }
     }
