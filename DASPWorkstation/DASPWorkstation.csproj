@@ -59,7 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Signal.cs" />
     <Compile Include="SignalDefinition.cs" />
     <Compile Include="SignalGenerator.cs" />
     <Compile Include="SignalHelper.cs" />

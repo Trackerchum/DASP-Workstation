@@ -14,14 +14,12 @@ namespace DASPWorkstation.Test
             float a = new Random().Next(48000);
             float f = new Random().Next(48000);
             float p = new Random().Next(48000);
-            int sr = new Random().Next(48000);
-            var signalDefinition1 = new SignalDefinition(a, f, p, sr);
+            var signalDefinition1 = new SignalDefinition(a, f, p);
 
             float a2 = new Random().Next(48000);
             float f2 = new Random().Next(48000);
             float p2 = new Random().Next(48000);
-            int sr2 = new Random().Next(48000);
-            var signalDefinition2 = new SignalDefinition(a2, f2, p2, sr2);
+            var signalDefinition2 = new SignalDefinition(a2, f2, p2);
 
             var unit = new SignalHelper();
             unit.AddSine(signalDefinition1);

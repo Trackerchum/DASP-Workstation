@@ -14,7 +14,7 @@ namespace DASPWorkstation.Test
             float p = new Random().Next(48000);
             int sr = new Random().Next(48000);
 
-            var unit = new SignalDefinition(a, f, p, sr);
+            var unit = new SignalDefinition(a, f, p);
             var res = unit.ToString(a, f, p);
             Assert.AreEqual($"{a}A | {f}Hz | {p}ph", res);
         }

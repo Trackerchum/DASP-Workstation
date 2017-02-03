@@ -65,7 +65,7 @@ namespace DASPWorkstation
 
         private void clearSignalBtn_Click(object sender, RoutedEventArgs e)
         {
-            _signalGenerator.BlankSignal(samplingRate);
+            // _signalGenerator.BlankSignal(samplingRate);
             _signalHelper.ClearValues();
             sineWavesCmb.Items.Clear();
             samplingRateCmb.IsEnabled = true;

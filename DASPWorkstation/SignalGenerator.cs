@@ -13,10 +13,8 @@ namespace DASPWorkstation
 
         public List<float> GenerateSignal(List<SignalDefinition> signalParameters, int samplingRate)
         {
-            currentSignal = new List<float>();
+            currentSignal = new List<float>(new float[samplingRate]);
             
-            BlankSignal(samplingRate);
-
             for (int x = 0; x < signalParameters.Count; x++)
             {
                 for (int n = 0; n < samplingRate; n++)
@@ -25,30 +23,6 @@ namespace DASPWorkstation
                 }
             }
             return currentSignal;
-        }
-
-
-        public List<float> GetCurrentSignal()
-        {
-            return currentSignal;
-        }
-
-
-        public void BlankSignal(int samplingRate)
-        {
-            if (currentSignal.Count == 0)
-            {
-                for (int n = 0; n < samplingRate; n++)
-                {
-                    currentSignal.Add(0);
-                }
-            }
-            else {
-                for (int n = 0; n < samplingRate; n++)
-                {
-                    currentSignal[n] = 0;
-                }
-            }
         }
     }
 
