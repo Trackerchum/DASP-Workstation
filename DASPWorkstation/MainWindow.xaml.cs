@@ -32,12 +32,20 @@ namespace DASPWorkstation
 
         private void addSineBtn_Click(object sender, RoutedEventArgs e)
         {
-            var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
-            _signalHelper.AddSine(signalDefinition);
-
-            sineWavesCmb.Items.Add(signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text)));
-            amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
-            samplingRateCmb.IsEnabled = false;
+            var validator = new Validator();
+            var statusCode = validator.Validate(amplitude.Text, frequency.Text, phase.Text);
+            if (statusCode == Validator.ValidatorStatusCode.OK)
+            {
+                var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
+                _signalHelper.AddSine(signalDefinition);
+                sineWavesCmb.Items.Add(signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text)));
+                amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
+                samplingRateCmb.IsEnabled = false;
+            }
+            else
+            {
+                MessageBox.Show($"Unable to add sine wave, function exited with error code; \n\n {statusCode}", "Error");
+            }
         }
 
 
