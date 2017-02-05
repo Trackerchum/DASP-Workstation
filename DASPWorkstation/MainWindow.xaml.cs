@@ -162,7 +162,7 @@ namespace DASPWorkstation
                 if (statusCode == Validator.ValidatorStatusCode.OK)
                 {
                     var dft = new DFT();
-                    var X = dft.PerformDFT(_signalGenerator.currentSignal, int.Parse(resolutionTxt.Text), samplingRate);
+                    var X = dft.PerformDFT(_signalGenerator.currentSignal, int.Parse(resolutionTxt.Text));
                     //magitude
                 }
                 else
