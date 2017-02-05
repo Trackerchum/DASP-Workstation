@@ -8,11 +8,14 @@ namespace DASPWorkstation
 {
     public class DFT
     {
+        private List<Complex> X = new List<Complex>();
+
         public List<Complex> PerformDFT(List<float> signal, int resolution)
         {
-            var X = new List<Complex>(new float[resolution], new float[resolution]);
+            X = new List<Complex>(new float[resolution], new float[resolution]);
+            X.Add(new Complex(1, 1));
             
-            
+
             //for (int m = 0; m < N; m++)
             //{
             //    for (int n = 0; n < N; n++)
