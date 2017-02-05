@@ -156,7 +156,15 @@ namespace DASPWorkstation
 
         private void plotDFTBtn_Click(object sender, RoutedEventArgs e)
         {
+            var statusCode = _validator.ValidateDFTResolution(resolutionTxt.Text);
+            if (statusCode == Validator.ValidatorStatusCode.OK)
+            {
 
+            }
+            else
+            {
+                MessageBox.Show($"Unable to plot DFT, function exited with error code; \n\n {statusCode}", "Error");
+            }
         }
 
 

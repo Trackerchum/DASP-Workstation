@@ -58,6 +58,29 @@ namespace DASPWorkstation
         }
 
 
+        public ValidatorStatusCode ValidateDFTResolution(string resolution)
+        {
+            ValidatorStatusCode statusCode = ValidatorStatusCode.OK;
+            float n;
+            bool resolutionIsNumeric = float.TryParse(resolution, out n);
+
+            if (resolution == null)
+            {
+                statusCode = ValidatorStatusCode.RESOLUTION_IS_NULL;
+            }
+            else if (resolutionIsNumeric == false)
+            {
+                statusCode = ValidatorStatusCode.RESOLUTION_NOT_NUMERIC;
+            }
+            else if (float.Parse(resolution) <= 0 || float.Parse(resolution) > 8000)
+            {
+                statusCode = ValidatorStatusCode.RESOLUTION_NOT_WITHIN_PARAMETERS;
+            }
+
+            return statusCode;
+        }
+
+
         public enum ValidatorStatusCode
         {
             OK,
@@ -74,9 +97,9 @@ namespace DASPWorkstation
             PHASE_NOT_NUMERIC,
             PHASE_NOT_WITHIN_PARAMETERS,
 
-            DFT_RESOLUTION_IS_NULL,
-            DFT_RESOLUTION_NOT_NUMERIC,
-            DFT_RESOLUTION_NOT_WITHIN_PARAMETERS
+            RESOLUTION_IS_NULL,
+            RESOLUTION_NOT_NUMERIC,
+            RESOLUTION_NOT_WITHIN_PARAMETERS
         }
     }
 }
