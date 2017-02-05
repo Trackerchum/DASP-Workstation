@@ -15,7 +15,7 @@ namespace DASPWorkstation.Test
             string a = null;
             string f = "345";
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.AMPLITUDE_IS_NULL, statusCode);
         }
@@ -27,7 +27,7 @@ namespace DASPWorkstation.Test
             string a = "345";
             string f = null;
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.FREQUENCY_IS_NULL, statusCode);
         }
@@ -39,7 +39,7 @@ namespace DASPWorkstation.Test
             string a = "345";
             string f = "345";
             string p = null;
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.PHASE_IS_NULL, statusCode);
         }
@@ -51,7 +51,7 @@ namespace DASPWorkstation.Test
             string a = "34g5";
             string f = "345";
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.AMPLITUDE_NOT_NUMERIC, statusCode);
         }
@@ -63,7 +63,7 @@ namespace DASPWorkstation.Test
             string a = "345";
             string f = "34g5";
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.FREQUENCY_NOT_NUMERIC, statusCode);
         }
@@ -75,7 +75,7 @@ namespace DASPWorkstation.Test
             string a = "345";
             string f = "345";
             string p = "34g5";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.PHASE_NOT_NUMERIC, statusCode);
         }
@@ -87,7 +87,7 @@ namespace DASPWorkstation.Test
             string a = "0";
             string f = "345";
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.AMPLITUDE_NOT_WITHIN_PARAMETERS, statusCode);
         }
@@ -99,7 +99,7 @@ namespace DASPWorkstation.Test
             string a = "345";
             string f = "345";
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.AMPLITUDE_NOT_WITHIN_PARAMETERS, statusCode);
         }
@@ -111,7 +111,7 @@ namespace DASPWorkstation.Test
             string a = "1";
             string f = "-96001";
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.FREQUENCY_NOT_WITHIN_PARAMETERS, statusCode);
         }
@@ -123,7 +123,7 @@ namespace DASPWorkstation.Test
             string a = "1";
             string f = "96001";
             string p = "345";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.FREQUENCY_NOT_WITHIN_PARAMETERS, statusCode);
         }
@@ -135,7 +135,7 @@ namespace DASPWorkstation.Test
             string a = "1";
             string f = "-96000";
             string p = "-3601";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.PHASE_NOT_WITHIN_PARAMETERS, statusCode);
         }
@@ -147,7 +147,7 @@ namespace DASPWorkstation.Test
             string a = "1";
             string f = "96000";
             string p = "3601";
-            var statusCode = validator.Validate(a, f, p);
+            var statusCode = validator.ValidateSignalParamters(a, f, p);
 
             Assert.AreEqual(Validator.ValidatorStatusCode.PHASE_NOT_WITHIN_PARAMETERS, statusCode);
         }

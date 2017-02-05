@@ -8,7 +8,7 @@ namespace DASPWorkstation
 {
     public class Validator
     {
-        public ValidatorStatusCode Validate(string amplitude, string frequency, string phase)
+        public ValidatorStatusCode ValidateSignalParamters(string amplitude, string frequency, string phase)
         {
             ValidatorStatusCode statusCode = ValidatorStatusCode.OK;
             float n;
@@ -16,32 +16,30 @@ namespace DASPWorkstation
             bool frequencyIsNumeric = float.TryParse(frequency, out n);
             bool phaseIsNumeric = float.TryParse(phase, out n);
 
-            if (amplitudeIsNumeric == false)
+
+            if (amplitude == null)
+            {
+                statusCode = ValidatorStatusCode.AMPLITUDE_IS_NULL;
+            }
+            else if (amplitudeIsNumeric == false)
             {
                 statusCode = ValidatorStatusCode.AMPLITUDE_NOT_NUMERIC;
-
-                if (amplitude == null)
-                {
-                    statusCode = ValidatorStatusCode.AMPLITUDE_IS_NULL;
-                }
+            }
+            else if (frequency == null)
+            {
+                statusCode = ValidatorStatusCode.FREQUENCY_IS_NULL;
             }
             else if (frequencyIsNumeric == false)
             {
                 statusCode = ValidatorStatusCode.FREQUENCY_NOT_NUMERIC;
-
-                if (frequency == null)
-                {
-                    statusCode = ValidatorStatusCode.FREQUENCY_IS_NULL;
-                }
+            }
+            else if (phase == null)
+            {
+                statusCode = ValidatorStatusCode.PHASE_IS_NULL;
             }
             else if (phaseIsNumeric == false)
             {
                 statusCode = ValidatorStatusCode.PHASE_NOT_NUMERIC;
-
-                if (phase == null)
-                {
-                    statusCode = ValidatorStatusCode.PHASE_IS_NULL;
-                }
             }
             else if (float.Parse(amplitude) <= 0 || float.Parse(amplitude) >= 10)
             {
@@ -75,9 +73,10 @@ namespace DASPWorkstation
             PHASE_IS_NULL,
             PHASE_NOT_NUMERIC,
             PHASE_NOT_WITHIN_PARAMETERS,
-            
-            NO_SINE_SELECTED_TO_EDIT,
-            NO_SIGNAL_TO_PLOT
+
+            DFT_RESOLUTION_IS_NULL,
+            DFT_RESOLUTION_NOT_NUMERIC,
+            DFT_RESOLUTION_NOT_WITHIN_PARAMETERS
         }
     }
 }

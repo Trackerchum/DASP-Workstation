@@ -23,6 +23,7 @@ namespace DASPWorkstation
         int samplingRate = 48000;
         private SignalHelper _signalHelper = new SignalHelper();
         private SignalGenerator _signalGenerator = new SignalGenerator();
+        private Validator _validator = new Validator();
 
         public MainWindow()
         {
@@ -32,8 +33,7 @@ namespace DASPWorkstation
 
         private void addSineBtn_Click(object sender, RoutedEventArgs e)
         {
-            var validator = new Validator();
-            var statusCode = validator.Validate(amplitude.Text, frequency.Text, phase.Text);
+            var statusCode = _validator.ValidateSignalParamters(amplitude.Text, frequency.Text, phase.Text);
             if (statusCode == Validator.ValidatorStatusCode.OK)
             {
                 var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
@@ -51,23 +51,31 @@ namespace DASPWorkstation
 
         private void plotSignalBtn_Click(object sender, RoutedEventArgs e)
         {
-            var signalPlotter = new SignalPlotter();
-            WriteableBitmap signalBmp = BitmapFactory.New(1270, 202);
-            Image waveform = new Image();
-
-            var signal = _signalGenerator.GenerateSignal(_signalHelper.GetValues(), samplingRate);
-            var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate); 
-            using (signalBmp.GetBitmapContext())
+            var sineCount = _signalHelper.GetValues();
+            if (sineCount.Count != 0)
             {
-                for (int n = 1; n < 1270; n++)
+                var signalPlotter = new SignalPlotter();
+                WriteableBitmap signalBmp = BitmapFactory.New(1270, 202);
+                Image waveform = new Image();
+
+                var signal = _signalGenerator.GenerateSignal(_signalHelper.GetValues(), samplingRate);
+                var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
+                using (signalBmp.GetBitmapContext())
                 {
-                    signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
+                    for (int n = 1; n < 1270; n++)
+                    {
+                        signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
+                    }
                 }
+                waveform.Source = signalBmp;
+
+                signalCanvas.Children.Clear();
+                signalCanvas.Children.Add(waveform);
             }
-            waveform.Source = signalBmp;
-            
-            signalCanvas.Children.Clear();
-            signalCanvas.Children.Add(waveform);
+            else
+            {
+                MessageBox.Show("Unable to plot signal, no sine waves have been added.", "Error");
+            }
         }
 
 
@@ -84,26 +92,42 @@ namespace DASPWorkstation
 
         private void editSineBtn_Click(object sender, RoutedEventArgs e)
         {
-            if ((string)editSineBtn.Content == "Edit Sine Wave")
+            if (sineWavesCmb.SelectedIndex != -1)
             {
-                var signal = _signalHelper.GetValues();
-                amplitude.Text = signal[sineWavesCmb.SelectedIndex].Amplitude.ToString();
-                frequency.Text = signal[sineWavesCmb.SelectedIndex].Frequency.ToString();
-                phase.Text = signal[sineWavesCmb.SelectedIndex].Phase.ToString();
-                sineWavesCmb.IsEnabled = false;
-                addSineBtn.IsEnabled = false;
-                editSineBtn.Content = "Save Sine Wave";
+                if ((string)editSineBtn.Content == "Edit Sine Wave")
+                {
+                    var signal = _signalHelper.GetValues();
+                    amplitude.Text = signal[sineWavesCmb.SelectedIndex].Amplitude.ToString();
+                    frequency.Text = signal[sineWavesCmb.SelectedIndex].Frequency.ToString();
+                    phase.Text = signal[sineWavesCmb.SelectedIndex].Phase.ToString();
+                    sineWavesCmb.IsEnabled = false;
+                    addSineBtn.IsEnabled = false;
+                    editSineBtn.Content = "Save Sine Wave";
+                }
             }
             else
             {
-                var n = sineWavesCmb.SelectedIndex;
-                sineWavesCmb.IsEnabled = true;
-                addSineBtn.IsEnabled = true;
-                editSineBtn.Content = "Edit Sine Wave";
-                var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text)); 
-                sineWavesCmb.Items[n] = signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
-                amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
-                _signalHelper.UpdateValues(signalDefinition, n);
+                MessageBox.Show("No sine wave selected for edit", "Error");
+            }
+
+            if ((string)editSineBtn.Content == "Save Sine Wave")
+            {
+                var statusCode = _validator.ValidateSignalParamters(amplitude.Text, frequency.Text, phase.Text);
+                if (statusCode == Validator.ValidatorStatusCode.OK)
+                {
+                    var n = sineWavesCmb.SelectedIndex;
+                    sineWavesCmb.IsEnabled = true;
+                    addSineBtn.IsEnabled = true;
+                    editSineBtn.Content = "Edit Sine Wave";
+                    var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
+                    sineWavesCmb.Items[n] = signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
+                    amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
+                    _signalHelper.UpdateValues(signalDefinition, n);
+                }
+                else
+                {
+                    MessageBox.Show($"Unable to add save sine wave, function exited with error code; \n\n {statusCode}", "Error");
+                }
             }
         }
 
@@ -127,6 +151,12 @@ namespace DASPWorkstation
                 default:
                     break;
             }
+        }
+
+
+        private void plotDFTBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
 
