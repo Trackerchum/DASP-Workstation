@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DFTSpec.cs" />
     <Compile Include="SignalDefinitionSpec.cs" />
     <Compile Include="SignalGeneratorSpec.cs" />
     <Compile Include="SignalHelperSpec.cs" />

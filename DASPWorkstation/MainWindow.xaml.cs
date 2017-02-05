@@ -156,14 +156,23 @@ namespace DASPWorkstation
 
         private void plotDFTBtn_Click(object sender, RoutedEventArgs e)
         {
-            var statusCode = _validator.ValidateDFTResolution(resolutionTxt.Text);
-            if (statusCode == Validator.ValidatorStatusCode.OK)
+            if (_signalGenerator.currentSignal.Count != 0)
             {
-
+                var statusCode = _validator.ValidateDFTResolution(resolutionTxt.Text);
+                if (statusCode == Validator.ValidatorStatusCode.OK)
+                {
+                    var dft = new DFT();
+                    var X = dft.PerformDFT(_signalGenerator.currentSignal, int.Parse(resolutionTxt.Text), samplingRate);
+                    //magitude
+                }
+                else
+                {
+                    MessageBox.Show($"Unable to plot DFT, function exited with error code; \n\n {statusCode}", "Error");
+                }
             }
             else
             {
-                MessageBox.Show($"Unable to plot DFT, function exited with error code; \n\n {statusCode}", "Error");
+                MessageBox.Show("Signal must be ploted before DFT can be performed", "Error");
             }
         }
 

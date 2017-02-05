@@ -61,8 +61,8 @@ namespace DASPWorkstation
         public ValidatorStatusCode ValidateDFTResolution(string resolution)
         {
             ValidatorStatusCode statusCode = ValidatorStatusCode.OK;
-            float n;
-            bool resolutionIsNumeric = float.TryParse(resolution, out n);
+            int n;
+            bool resolutionIsNumeric = int.TryParse(resolution, out n);
 
             if (resolution == null)
             {
@@ -72,7 +72,7 @@ namespace DASPWorkstation
             {
                 statusCode = ValidatorStatusCode.RESOLUTION_NOT_NUMERIC;
             }
-            else if (float.Parse(resolution) <= 0 || float.Parse(resolution) > 8000)
+            else if (int.Parse(resolution) <= 0 || int.Parse(resolution) > 8000)
             {
                 statusCode = ValidatorStatusCode.RESOLUTION_NOT_WITHIN_PARAMETERS;
             }
