@@ -24,6 +24,7 @@ namespace DASPWorkstation
         private SignalHelper _signalHelper = new SignalHelper();
         private SignalGenerator _signalGenerator = new SignalGenerator();
         private Validator _validator = new Validator();
+        private FT_Helper _ftHelper = new FT_Helper();
 
         public MainWindow()
         {
@@ -166,8 +167,10 @@ namespace DASPWorkstation
                     var Xmag = new List<float>(new float[int.Parse(resolutionTxt.Text)]);
                     for (int m = 0; m < int.Parse(resolutionTxt.Text); m++)
                     {
-                        Xmag[m] = dft.Abs(X[m]);
+                        Xmag[m] = _ftHelper.Abs(X[m]);
                     }
+
+
                 }
                 else
                 {
@@ -178,6 +181,12 @@ namespace DASPWorkstation
             {
                 MessageBox.Show("Signal must be ploted before DFT can be performed", "Error");
             }
+        }
+
+
+        public void plotFT()
+        {
+
         }
 
 

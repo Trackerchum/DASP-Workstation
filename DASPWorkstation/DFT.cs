@@ -26,11 +26,5 @@ namespace DASPWorkstation
             }
             return X;
         }
-
-        public float Abs(Complex complex)
-        {
-            float complexAbs = (float)Math.Sqrt((complex.Real * complex.Real) + (complex.Imaginary * complex.Imaginary));
-            return complexAbs;
-        }
     }
 }

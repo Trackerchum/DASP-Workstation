@@ -10,19 +10,6 @@ namespace DASPWorkstation.Test
         private Z_SpecHelper specHelper = new Z_SpecHelper();
 
         [TestMethod]
-        public void AbsFunctionMustReturnTheCorrectValue()
-        {
-            var complex = new Complex(3, 4);
-            var complex2 = new Complex(-3, -4);
-            var dft = new DFT();
-            var abs = dft.Abs(complex);
-            var abs2 = dft.Abs(complex2);
-
-            Assert.AreEqual(5, abs);
-            Assert.AreEqual(5, abs2);
-        }
-
-        [TestMethod]
         public void dftFunctionMustReturnTheCorrectNumberOfValues()
         {
             var dft = new DFT();
