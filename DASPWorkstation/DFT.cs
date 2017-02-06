@@ -10,22 +10,18 @@ namespace DASPWorkstation
     {
         private List<Complex> X = new List<Complex>();
 
-        public List<Complex> PerformDFT(List<float> signal, int resolution)
+        public List<Complex> PerformDFT(List<float> signal, int N)
         {
-            X = new List<Complex>(new float[resolution], new float[resolution]);
-            X.Add(new Complex(1, 1));
-            
+            X = new List<Complex>(N);
 
-            //for (int m = 0; m < N; m++)
-            //{
-            //    for (int n = 0; n < N; n++)
-            //    {
-            //        re = x[n] * ((float)Math.Cos((2 * pi * n * m) / N));
-            //        im = x[n] * ((float)Math.Sin((2 * pi * n * m) / N));
-            //        Xre[m] = Xre[m] + re;
-            //        Xim[m] = Xim[m] + im;
-            //    }
-            //}
+            for (int m = 0; m < N; m++)
+            {
+                for (int n = 0; n < N; n++)
+                {
+                    Complex placeholder = new Complex((signal[n] * ((float)Math.Cos((2 * Math.PI * n * m) / N))), (signal[n] * ((float)Math.Sin((2 * Math.PI * n * m) / N))));
+                    X[m] = X[m] + placeholder;
+                }
+            }
 
             return X;
         }
