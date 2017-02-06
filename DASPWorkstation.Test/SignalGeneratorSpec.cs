@@ -7,6 +7,8 @@ namespace DASPWorkstation.Test
     [TestClass]
     public class SignalGeneratorSpec
     {
+        private Z_SpecHelper specHelper = new Z_SpecHelper();
+
         [TestMethod]
         public void GenerateSignalShouldReturnTheCorrectNumberOfValuesBasedOnSamplingRate()
         {
@@ -41,26 +43,11 @@ namespace DASPWorkstation.Test
             var unit = new SignalGenerator();
             var res = unit.GenerateSignal(signalDefinitions, samplingRate);
 
-            if ((Math.Sqrt(res[0] * res[0])) > 0.000000000000001) // 10^-15
-            {
-                failed = true;
-            }
-            if ((Math.Sqrt((res[1] - 1) * (res[1] - 1))) > 0.000000000000001)
-            {
-                failed = true;
-            }
-            if ((Math.Sqrt(res[2] * res[2])) > 0.000000000000001)
-            {
-                failed = true;
-            }
-            if ((Math.Sqrt((res[3] + 1) * (res[3] + 1))) > 0.000000000000001)
-            {
-                failed = true;
-            }
-            if ((Math.Sqrt(res[4] * res[4])) > 0.000000000000001)
-            {
-                failed = true;
-            }
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[0], 0));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[1], 1));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[2], 0));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[3], -1));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[4], 0));
 
             Assert.AreEqual(failed, false);
             // http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
@@ -84,13 +71,11 @@ namespace DASPWorkstation.Test
             var res = unit.GenerateSignal(signalDefinitions, samplingRate);
 
 
-            Assert.IsTrue(AreApproximatelyEqual(res[0], 0));
-            // Assert.IsTrue(res[0] > -0.001 && res[0] < 0.001);
-            Assert.IsTrue(res[1] > 0.999 && res[1] < 1.001);
-            Assert.IsTrue(res[2] > -0.001 && res[2] < 0.001);
-            Assert.IsTrue(res[3] < -0.999 && res[3] > -1.001);
-            Assert.IsTrue(res[4] > -0.001 && res[4] < 0.001);
-            // http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[0], 0));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[1], 1));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[2], 0));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[3], -1));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[4], 0));
         }
         
         [TestMethod]
@@ -111,17 +96,12 @@ namespace DASPWorkstation.Test
             unit.GenerateSignal(signalDefinitions, samplingRate);
             var res = unit.GenerateSignal(signalDefinitions, samplingRate);
 
-            Assert.IsTrue(res[0] > -0.001 && res[0] < 0.001);
-            Assert.IsTrue(res[1] > 0.999 && res[1] < 1.001);
-            Assert.IsTrue(res[2] > -0.001 && res[2] < 0.001);
-            Assert.IsTrue(res[3] < -0.999 && res[3] > -1.001);
-            Assert.IsTrue(res[4] > -0.001 && res[4] < 0.001);
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[0], 0));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[1], 1));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[2], 0));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[3], -1));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(res[4], 0));
             // http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
-        }
-
-        private bool AreApproximatelyEqual(float actual, float expected)
-        {
-            return false;
         }
     }
 }

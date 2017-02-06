@@ -163,7 +163,11 @@ namespace DASPWorkstation
                 {
                     var dft = new DFT();
                     var X = dft.PerformDFT(_signalGenerator.currentSignal, int.Parse(resolutionTxt.Text));
-                    //magitude
+                    var Xmag = new List<float>(new float[int.Parse(resolutionTxt.Text)]);
+                    for (int m = 0; m < int.Parse(resolutionTxt.Text); m++)
+                    {
+                        Xmag[m] = dft.Abs(X[m]);
+                    }
                 }
                 else
                 {
