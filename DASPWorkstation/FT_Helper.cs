@@ -13,5 +13,16 @@ namespace DASPWorkstation
             float complexAbs = (float)Math.Sqrt((complex.Real * complex.Real) + (complex.Imaginary * complex.Imaginary));
             return complexAbs;
         }
+
+        public List<float> ConvertToDB(List<float> Xmag, int N)
+        {
+            var XmagDB = new List<float>(new float[N/2]);
+            for (int m = 0; m > N / 2; m++)
+            {
+                XmagDB[m] = 20 * (float)Math.Log10(Xmag[m] / (N / 2));
+            }
+
+            return XmagDB;
+        }
     }
 }

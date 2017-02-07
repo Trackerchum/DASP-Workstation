@@ -18,5 +18,11 @@ namespace DASPWorkstation.Test
             Assert.AreEqual(5, abs);
             Assert.AreEqual(5, abs2);
         }
+
+        [TestMethod]
+        public void DbFunctionMustReturnTheCorrectValue()
+        {
+
+        }
     }
 }

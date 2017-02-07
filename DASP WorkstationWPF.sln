@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DASP WorkstationWPF", "DASP WorkstationWPF\DASP WorkstationWPF.csproj", "{19F1D4C9-99F6-40B3-B123-359BF4DDC2D9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DASP WorkstationWPF test", "DASP WorkstationWPF test\DASP WorkstationWPF test.csproj", "{FF1B8D54-3FA2-44CB-B416-AFFDA7A095B8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{65BC68F0-C04B-46BE-AF8A-273A66928B57}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DASPWorkstation", "DASPWorkstation\DASPWorkstation.csproj", "{B4DA6D44-BE4C-417C-9626-AAE381E43088}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DASPWorkstation.Test", "DASPWorkstation.Test\DASPWorkstation.Test.csproj", "{41747B2E-69CE-45FB-B653-55F08AAF1D83}"
@@ -19,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{19F1D4C9-99F6-40B3-B123-359BF4DDC2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19F1D4C9-99F6-40B3-B123-359BF4DDC2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19F1D4C9-99F6-40B3-B123-359BF4DDC2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19F1D4C9-99F6-40B3-B123-359BF4DDC2D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF1B8D54-3FA2-44CB-B416-AFFDA7A095B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF1B8D54-3FA2-44CB-B416-AFFDA7A095B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF1B8D54-3FA2-44CB-B416-AFFDA7A095B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF1B8D54-3FA2-44CB-B416-AFFDA7A095B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4DA6D44-BE4C-417C-9626-AAE381E43088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4DA6D44-BE4C-417C-9626-AAE381E43088}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4DA6D44-BE4C-417C-9626-AAE381E43088}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,9 +24,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{19F1D4C9-99F6-40B3-B123-359BF4DDC2D9} = {65BC68F0-C04B-46BE-AF8A-273A66928B57}
-		{FF1B8D54-3FA2-44CB-B416-AFFDA7A095B8} = {65BC68F0-C04B-46BE-AF8A-273A66928B57}
 	EndGlobalSection
 EndGlobal
