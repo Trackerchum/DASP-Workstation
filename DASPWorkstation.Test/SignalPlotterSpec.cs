@@ -47,7 +47,5 @@ namespace DASPWorkstation.Test
 
             Assert.AreEqual(res.Count, 1270);
         }
-        
-
     }
 }

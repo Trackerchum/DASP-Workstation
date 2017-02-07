@@ -16,8 +16,8 @@ namespace DASPWorkstation
 
         public List<float> ConvertToDB(List<float> Xmag, int N)
         {
-            var XmagDB = new List<float>(new float[N/2]);
-            for (int m = 0; m > N / 2; m++)
+            var XmagDB = new List<float>(new float[N]);
+            for (int m = 0; m < N; m++)
             {
                 XmagDB[m] = 20 * (float)Math.Log10(Xmag[m] / (N / 2));
             }

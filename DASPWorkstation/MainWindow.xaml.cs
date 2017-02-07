@@ -184,6 +184,19 @@ namespace DASPWorkstation
         }
 
 
+        private void LinDBswitchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
+            {
+                LinDBswitchBtn.Content = "Linear";
+            }
+            else
+            {
+                LinDBswitchBtn.Content = "Logarithmic (dB)";
+            }
+        }
+
+
         public void plotFT()
         {
 

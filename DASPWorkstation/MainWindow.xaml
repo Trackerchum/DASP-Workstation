@@ -44,6 +44,7 @@
         <Label x:Name="label2" Content="Resolution:" Canvas.Left="140" Canvas.Top="504"/>
         <TextBox x:Name="resolutionTxt" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="216" Canvas.Top="508" />
         <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="350" Canvas.Top="504" Width="134" Height="26" Click="plotDFTBtn_Click" />
+        <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="500" Canvas.Top="504" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
 
         <Canvas Name="fourierCanvas" Height="202" Canvas.Left="70" Canvas.Top="547" Width="1270" >
             <Canvas.Background>
