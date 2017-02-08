@@ -15,15 +15,19 @@ namespace DASPWorkstation
             if (N < 1270)
             {
                 scaledFT = new List<int>(new int[N]);
+                for (int n = 0; n < scaledFT.Count; n++)
+                {
+                    //draw line 
+                    scaledFT[n] = (int)((ft[n] / ft.Max()) * 200);
+                }
             }
             else
             {
                 scaledFT = new List<int>(new int[1270]);
-            }
-
-            for (int n = 0; n < scaledFT.Count; n++)
-            {
-                scaledFT[n] = (int)((ft[n] / ft.Max())* 200);
+                for (int n = 0; n < scaledFT.Count; n++)
+                {
+                    scaledFT[n] = (int)((ft[n] / ft.Max()) * 200);
+                }
             }
 
             
