@@ -57,6 +57,16 @@ namespace DASPWorkstation.Test
             Assert.AreEqual((6.4 / 8) * 200, res[13]);
             Assert.AreEqual((4.8 / 8) * 200, res[5]);
             Assert.AreEqual((4.8 / 8) * 200, res[11]);
+            Assert.AreEqual((3.2 / 8) * 200, res[7]);
+            Assert.AreEqual((3.2 / 8) * 200, res[9]);
+            Assert.IsTrue(res[0] == 0);
+            Assert.IsTrue(res[2] == 0);
+            Assert.IsTrue(res[4] == 0);
+            Assert.IsTrue(res[6] == 0);
+            Assert.IsTrue(res[8] == 0);
+            Assert.IsTrue(res[10] == 0);
+            Assert.IsTrue(res[12] == 0);
+            Assert.IsTrue(res[14] == 0);
         }
     }
 }

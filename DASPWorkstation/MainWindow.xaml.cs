@@ -82,7 +82,6 @@ namespace DASPWorkstation
 
         private void clearSignalBtn_Click(object sender, RoutedEventArgs e)
         {
-            // _signalGenerator.BlankSignal(samplingRate);
             _signalHelper.ClearValues();
             sineWavesCmb.Items.Clear();
             samplingRateCmb.IsEnabled = true;
@@ -105,30 +104,29 @@ namespace DASPWorkstation
                     addSineBtn.IsEnabled = false;
                     editSineBtn.Content = "Save Sine Wave";
                 }
+                else
+                {
+                    var statusCode = _validator.ValidateSignalParamters(amplitude.Text, frequency.Text, phase.Text);
+                    if (statusCode == Validator.ValidatorStatusCode.OK)
+                    {
+                        var n = sineWavesCmb.SelectedIndex;
+                        sineWavesCmb.IsEnabled = true;
+                        addSineBtn.IsEnabled = true;
+                        var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
+                        sineWavesCmb.Items[n] = signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
+                        amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
+                        _signalHelper.UpdateValues(signalDefinition, n);
+                        editSineBtn.Content = "Edit Sine Wave";
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Unable to add save sine wave, function exited with error code; \n\n {statusCode}", "Error");
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("No sine wave selected for edit", "Error");
-            }
-
-            if ((string)editSineBtn.Content == "Save Sine Wave")
-            {
-                var statusCode = _validator.ValidateSignalParamters(amplitude.Text, frequency.Text, phase.Text);
-                if (statusCode == Validator.ValidatorStatusCode.OK)
-                {
-                    var n = sineWavesCmb.SelectedIndex;
-                    sineWavesCmb.IsEnabled = true;
-                    addSineBtn.IsEnabled = true;
-                    editSineBtn.Content = "Edit Sine Wave";
-                    var signalDefinition = new SignalDefinition(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
-                    sineWavesCmb.Items[n] = signalDefinition.ToString(float.Parse(amplitude.Text), float.Parse(frequency.Text), float.Parse(phase.Text));
-                    amplitude.Text = ""; frequency.Text = ""; phase.Text = "";
-                    _signalHelper.UpdateValues(signalDefinition, n);
-                }
-                else
-                {
-                    MessageBox.Show($"Unable to add save sine wave, function exited with error code; \n\n {statusCode}", "Error");
-                }
             }
         }
 
@@ -170,6 +168,15 @@ namespace DASPWorkstation
                         Xmag[m] = _ftHelper.Abs(X[m]);
                     }
 
+                    if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
+                    {
+                        plotFT(Xmag);
+                    }
+                    else
+                    {
+                        var XmagDB = _ftHelper.ConvertToDB(Xmag, int.Parse(resolutionTxt.Text));
+                        plotFT(XmagDB);
+                    }
 
                 }
                 else
@@ -197,9 +204,24 @@ namespace DASPWorkstation
         }
 
 
-        public void plotFT()
+        public void plotFT(List <float> FT) 
         {
+            var ftPlotter = new FT_Plotter();
+            WriteableBitmap ftBmp = BitmapFactory.New(1270, 202);
+            Image ftImage = new Image();
+            var scaledFT = ftPlotter.ScaleFT(FT, int.Parse(resolutionTxt.Text));
+            
+            using (ftBmp.GetBitmapContext())
+            {
+                for (int n = 1; n < 1270; n++)
+                {
+                    ftBmp.SetPixel(n, scaledFT[n] + 1, Colors.Black);
+                }
+            }
+            ftImage.Source = ftBmp;
 
+            fourierCanvas.Children.Clear();
+            fourierCanvas.Children.Add(ftImage);
         }
 
 
