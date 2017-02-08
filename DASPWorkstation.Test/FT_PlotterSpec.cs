@@ -9,7 +9,7 @@ namespace DASPWorkstation.Test
     public class FT_PlotterSpec
     {
         [TestMethod]
-        public void ScaleFT_ShouldReturnTheCorrectNumberOfValuesUnderLength()
+        public void ScaleFT_ShouldReturnTheCorrectNumberOfValuesUnderLength() // fail
         {
             var ftPlotter = new FT_Plotter();
             int N = new Random().Next(1269);
@@ -43,7 +43,7 @@ namespace DASPWorkstation.Test
         }
 
         [TestMethod]
-        public void ScaleFT_ShouldReturnTheCorrectValues()
+        public void ScaleFT_ShouldReturnTheCorrectValues() // fail
         {
             var ftPlotter = new FT_Plotter();
             int N = 16;
@@ -51,22 +51,22 @@ namespace DASPWorkstation.Test
 
             var res = ftPlotter.ScaleFT(FT, N);
 
-            Assert.AreEqual(200, res[1]);
-            Assert.AreEqual(200, res[15]);
-            Assert.AreEqual((6.4 / 8) * 200, res[3]);
-            Assert.AreEqual((6.4 / 8) * 200, res[13]);
-            Assert.AreEqual((4.8 / 8) * 200, res[5]);
-            Assert.AreEqual((4.8 / 8) * 200, res[11]);
-            Assert.AreEqual((3.2 / 8) * 200, res[7]);
-            Assert.AreEqual((3.2 / 8) * 200, res[9]);
-            Assert.IsTrue(res[0] == 0);
-            Assert.IsTrue(res[2] == 0);
-            Assert.IsTrue(res[4] == 0);
-            Assert.IsTrue(res[6] == 0);
-            Assert.IsTrue(res[8] == 0);
-            Assert.IsTrue(res[10] == 0);
-            Assert.IsTrue(res[12] == 0);
-            Assert.IsTrue(res[14] == 0);
+            Assert.AreEqual(0, res[1]);
+            Assert.AreEqual(0, res[15]);
+            Assert.AreEqual((((6.4 / 8) * 200) - 200) * -1, res[3]);
+            Assert.AreEqual((((6.4 / 8) * 200) - 200) * -1, res[13]);
+            Assert.AreEqual((((4.8 / 8) * 200) - 200) * -1, res[5]);
+            Assert.AreEqual((((4.8 / 8) * 200) - 200) * -1, res[11]);
+            Assert.AreEqual((((3.2 / 8) * 200) - 200) * -1, res[7]);
+            Assert.AreEqual((((3.2 / 8) * 200) - 200) * -1, res[9]);
+            Assert.IsTrue(res[0] == 200);
+            Assert.IsTrue(res[2] == 200);
+            Assert.IsTrue(res[4] == 200);
+            Assert.IsTrue(res[6] == 200);
+            Assert.IsTrue(res[8] == 200);
+            Assert.IsTrue(res[10] == 200);
+            Assert.IsTrue(res[12] == 200);
+            Assert.IsTrue(res[14] == 200);
         }
     }
 }
