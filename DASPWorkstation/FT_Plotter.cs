@@ -16,11 +16,15 @@ namespace DASPWorkstation
 
             if (ft.Count > 2540)
             {
+                var range = (int)((N / 2) / 1270);
+
                 for (int n = 0; n < 1270; n++) // maxes out around 22825Hz for 48kHz fs, 8k res
                 {
-                    // loop here to pick out highest value in range 
 
-                    scaledFT[n] = (((int)((ft[(int)(((N / 2) / 1270) * n)] / ft.Max()) * 200)) - 200) * -1;
+                    var _n = (int)(((N / 2) / 1270) * n); // loop here to pick out highest value in range 
+
+
+                    scaledFT[n] = (((int)((ft[_n] / ft.Max()) * 200)) - 200) * -1;
                 }
             }
             else
