@@ -216,13 +216,20 @@ namespace DASPWorkstation
             {
                 for (int n = 1; n < 1270; n++)
                 {
-                    ftBmp.SetPixel(n, scaledFT[n] + 1, Colors.Black);
+                    //ftBmp.SetPixel(n, scaledFT[n] + 1, Colors.Black);
+                    ftBmp.DrawLine(n, 201, n, scaledFT[n], Colors.Black);
                 }
             }
             ftImage.Source = ftBmp;
 
             fourierCanvas.Children.Clear();
             fourierCanvas.Children.Add(ftImage);
+        }
+
+
+        private void windowCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
 

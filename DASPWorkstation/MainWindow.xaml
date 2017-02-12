@@ -46,6 +46,15 @@
         <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="350" Canvas.Top="504" Width="134" Height="26" Click="plotDFTBtn_Click" />
         <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="500" Canvas.Top="504" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
 
+        <ComboBox x:Name="windowCmb" SelectedIndex="0" Canvas.Left="1152" Canvas.Top="504" Width="188" Height="26" SelectionChanged="windowCmb_SelectionChanged">
+            <ComboBoxItem Content="Rectangular Window (None)" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="Flat Top Window" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="Blackman Window" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="Hanning Window" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="Blackman–Harris Window" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="Hamming Window" HorizontalAlignment="Left" Width="186"/>
+        </ComboBox>
+
         <Canvas Name="fourierCanvas" Height="202" Canvas.Left="70" Canvas.Top="547" Width="1270" >
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="5"/>
