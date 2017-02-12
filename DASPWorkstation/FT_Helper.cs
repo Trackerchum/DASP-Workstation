@@ -33,7 +33,7 @@ namespace DASPWorkstation
 
             for (int n = 0; n < N/2+1; n++)
             {
-                FT_DEBUG_LIST.Add($"Bin {n}, {(samplingRate/N) * n}Hz --- {Xmag[n]}");
+                FT_DEBUG_LIST.Add($"Bin {n}, {(samplingRate/(float)N) * n}Hz --- {Xmag[n]}");
             }
 
             File.WriteAllLines("DEBUG DFT or FFT output.txt", FT_DEBUG_LIST);

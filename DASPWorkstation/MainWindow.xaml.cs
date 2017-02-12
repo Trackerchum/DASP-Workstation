@@ -179,7 +179,6 @@ namespace DASPWorkstation
                         var XmagDB = _ftHelper.ConvertToDB(Xmag, int.Parse(resolutionTxt.Text));
                         plotFT(XmagDB);
                     }
-
                 }
                 else
                 {
