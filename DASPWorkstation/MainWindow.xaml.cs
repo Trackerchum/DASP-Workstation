@@ -168,6 +168,8 @@ namespace DASPWorkstation
                         Xmag[m] = _ftHelper.Abs(X[m]);
                     }
 
+                    _ftHelper.DEBUG_PrintFT_TextFile(Xmag, int.Parse(resolutionTxt.Text), samplingRate);
+
                     if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
                     {
                         plotFT(Xmag);

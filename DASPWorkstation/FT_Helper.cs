@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,19 @@ namespace DASPWorkstation
             }
 
             return XmagDB;
+        }
+
+
+        public void DEBUG_PrintFT_TextFile(List<float> Xmag, int N, int samplingRate)
+        {
+            var FT_DEBUG_LIST = new List<string>();
+
+            for (int n = 0; n < N/2+1; n++)
+            {
+                FT_DEBUG_LIST.Add($"Bin {n}, {(samplingRate/N) * n}Hz --- {Xmag[n]}");
+            }
+
+            File.WriteAllLines("DEBUG DFT or FFT output.txt", FT_DEBUG_LIST);
         }
     }
 }

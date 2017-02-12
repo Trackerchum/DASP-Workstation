@@ -25,9 +25,9 @@ namespace DASPWorkstation
 
                     for (int l = 0; l < range; l++)
                     {
-                        if (ft[(int)(((N / 2) / 1270) * range) + l] > _n)
+                        if (ft[(int)(((N / 2) / 1270) * n) + l] > _n)
                         {
-                            _n = ft[(int)(((N / 2) / 1270) * n)];
+                            _n = ft[(int)(((N / 2) / 1270) * n) + l];
                         }
                     }
 
