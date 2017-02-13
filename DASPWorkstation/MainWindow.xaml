@@ -50,9 +50,10 @@
             <ComboBoxItem Content="Rectangular Window (None)" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Flat Top Window" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Blackman Window" HorizontalAlignment="Left" Width="186"/>
-            <ComboBoxItem Content="Hanning Window" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Blackman–Harris Window" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Hamming Window" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="Nuttall Window" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="Blackman–Nuttall Window" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
 
         <Canvas Name="fourierCanvas" Height="202" Canvas.Left="70" Canvas.Top="547" Width="1270" >

@@ -37,7 +37,7 @@ namespace DASPWorkstation
             }
             else
             {
-                scaledFT = new List<int>(new int[N]);
+                scaledFT = new List<int>(new int[N/2]);
 
                 for (int n = 0; n < N / 2; n++)
                 {

@@ -214,18 +214,18 @@ namespace DASPWorkstation
             
             using (ftBmp.GetBitmapContext())
             {
-                if (int.Parse(resolutionTxt.Text) >= 1270)
+                if (int.Parse(resolutionTxt.Text) >= 2540)
                 {
-                    for (int n = 0; n < 1270; n++)
+                    for (int n = 0; n < 1270-1; n++)
                     {
-                        ftBmp.DrawLine(n, 201, n, scaledFT[n], Colors.Black);
+                        ftBmp.DrawLine(n, scaledFT[n], n+1, scaledFT[n+1], Colors.Black);
                     }
                 }
                 else
                 {
                     for (int n = 0; n < scaledFT.Count-1; n++)
                     {
-                        ftBmp.DrawLine((float)n, scaledFT[n], (float)n, scaledFT[n + 1], Colors.Black);
+                        ftBmp.DrawLine((int)((1270.0f / scaledFT.Count)*n), scaledFT[n], (int)((1270.0f / scaledFT.Count) * (float)(n+1)), scaledFT[n + 1], Colors.Black);
                     }
                 }
             }
