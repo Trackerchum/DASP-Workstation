@@ -18,7 +18,7 @@ namespace DASPWorkstation
             {
                 scaledFT = new List<int>(new int[1270]);
                 float _n;
-                var range = Math.Ceiling((((float)N / 2) / (float)1269));
+                var range = Math.Ceiling((((float)N / 2) / 1269.0f));
 
                 for (int n = 0; n < 1270; n++)
                 {
@@ -26,9 +26,9 @@ namespace DASPWorkstation
 
                     for (int l = 0; l < range; l++)
                     {
-                        if (ft[(int)((((float)N / 2) / (float)1269) * n) + l] > _n)
+                        if (ft[(int)((((float)N / 2) / 1269.0f) * n) + l] > _n)
                         {
-                            _n = ft[(int)((((float)N / 2) / (float)1269) * n) + l];
+                            _n = ft[(int)((((float)N / 2) / 1269.0f) * n) + l];
                         }
                     }
 

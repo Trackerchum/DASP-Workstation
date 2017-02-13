@@ -214,10 +214,19 @@ namespace DASPWorkstation
             
             using (ftBmp.GetBitmapContext())
             {
-                for (int n = 1; n < 1270; n++)
+                if (int.Parse(resolutionTxt.Text) >= 1270)
                 {
-                    //ftBmp.SetPixel(n, scaledFT[n] + 1, Colors.Black);
-                    ftBmp.DrawLine(n, 201, n, scaledFT[n], Colors.Black);
+                    for (int n = 0; n < 1270; n++)
+                    {
+                        ftBmp.DrawLine(n, 201, n, scaledFT[n], Colors.Black);
+                    }
+                }
+                else
+                {
+                    for (int n = 0; n < scaledFT.Count-1; n++)
+                    {
+                        ftBmp.DrawLine((float)n, scaledFT[n], (float)n, scaledFT[n + 1], Colors.Black);
+                    }
                 }
             }
             ftImage.Source = ftBmp;
@@ -227,15 +236,15 @@ namespace DASPWorkstation
         }
 
 
-        private void windowCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void sineWavesCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
 
-        private void sineWavesCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void windowCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
     }
 }

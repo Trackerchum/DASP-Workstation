@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DASPWorkstation
 {
-    public class Window
+    public class WindowFn
     {
 
     }
