@@ -37,9 +37,9 @@ namespace DASPWorkstation
             }
             else
             {
-                scaledFT = new List<int>(new int[N/2]);
+                scaledFT = new List<int>(new int[N/2+1]);
 
-                for (int n = 0; n < N / 2; n++)
+                for (int n = 0; n <= N / 2; n++)
                 {
                     scaledFT[n] = (((int)((ft[n] / ft.Max()) * 200)) - 200) * -1;
                 }

@@ -225,7 +225,7 @@ namespace DASPWorkstation
                 {
                     for (int n = 0; n < scaledFT.Count - 1; n++)
                     {
-                        ftBmp.DrawLine((int)((1270.0f / (scaledFT.Count-1))*n), scaledFT[n], (int)((1270.0f / (scaledFT.Count-1)) * ((float)n+1)), scaledFT[n + 1], Colors.Black);
+                        ftBmp.DrawLine((int)((1269.0f / (scaledFT.Count-1))*n), scaledFT[n], (int)((1269.0f / (scaledFT.Count-1)) * ((float)n+1)), scaledFT[n + 1], Colors.Black);
                     }
                 }
             }
