@@ -244,7 +244,32 @@ namespace DASPWorkstation
 
         private void windowCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            switch (windowCmb.SelectedIndex)
+            {
+                case 0:
+                    // Rectangular
+                    break;
+                case 1:
+                    // Flat Top
+                    break;
+                case 2:
+                    // Blackman
+                    break;
+                case 3:
+                    // Blackman–Harris
+                    break;
+                case 4:
+                    // Hamming
+                    break;
+                case 5:
+                    // Nuttall
+                    break;
+                case 6:
+                    // Blackman–Nuttall
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
