@@ -20,7 +20,7 @@ namespace DASPWorkstation
             var XmagDB = new List<float>(new float[N]);
             for (int m = 0; m < N; m++)
             {
-                XmagDB[m] = 20 * (float)Math.Log10(Xmag[m] / (N / 2));
+                XmagDB[m] = 20 * (float)Math.Log10(Xmag[m] / (N / 2.0f));
             }
 
             return XmagDB;
