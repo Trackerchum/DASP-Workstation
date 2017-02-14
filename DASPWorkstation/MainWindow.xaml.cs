@@ -273,3 +273,16 @@ namespace DASPWorkstation
         }
     }
 }
+
+
+//public class InvalidAmplitudeException : Exception
+//{
+//    public InvalidAmplitudeException(float amplitude) : base(amplitude.ToString())
+//    {
+
+//    }
+//}
+	
+	
+//	 if (amplitude > 7)
+//                throw new InvalidAmplitudeException(amplitude);
