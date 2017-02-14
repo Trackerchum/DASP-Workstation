@@ -16,7 +16,7 @@ namespace DASPWorkstation.Test
             var FT = new List<float>(new float[N]);
             var res = ftPlotter.ScaleFT(FT, N);
 
-            Assert.AreEqual(N/2, res.Count);
+            Assert.AreEqual(N/2+1, res.Count);
         }
 
         [TestMethod]

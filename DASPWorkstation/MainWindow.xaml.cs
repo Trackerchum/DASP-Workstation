@@ -25,6 +25,7 @@ namespace DASPWorkstation
         private SignalGenerator _signalGenerator = new SignalGenerator();
         private Validator _validator = new Validator();
         private FT_Helper _ftHelper = new FT_Helper();
+        private DFT dft = new DFT();
 
         public MainWindow()
         {
@@ -160,15 +161,16 @@ namespace DASPWorkstation
                 var statusCode = _validator.ValidateDFTResolution(resolutionTxt.Text);
                 if (statusCode == Validator.ValidatorStatusCode.OK)
                 {
-                    var dft = new DFT();
-                    var X = dft.PerformDFT(_signalGenerator.currentSignal, int.Parse(resolutionTxt.Text));
-                    var Xmag = new List<float>(new float[int.Parse(resolutionTxt.Text)]);
-                    for (int m = 0; m < int.Parse(resolutionTxt.Text); m++)
+                    windowCmb.IsEnabled = true;
+                    dft.N = int.Parse(resolutionTxt.Text);
+                    var X = dft.PerformDFT(_signalGenerator.currentSignal);
+                    var Xmag = new List<float>(dft.N);
+                    for (int m = 0; m < dft.N; m++)
                     {
                         Xmag[m] = _ftHelper.Abs(X[m]);
                     }
 
-                    _ftHelper.DEBUG_PrintFT_TextFile(Xmag, int.Parse(resolutionTxt.Text), samplingRate);
+                    // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, dft.N, samplingRate);
 
                     if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
                     {
@@ -176,7 +178,7 @@ namespace DASPWorkstation
                     }
                     else
                     {
-                        var XmagDB = _ftHelper.ConvertToDB(Xmag, int.Parse(resolutionTxt.Text));
+                        var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
                         plotFT(XmagDB);
                     }
                 }
@@ -210,11 +212,11 @@ namespace DASPWorkstation
             var ftPlotter = new FT_Plotter();
             WriteableBitmap ftBmp = BitmapFactory.New(1270, 202);
             Image ftImage = new Image();
-            var scaledFT = ftPlotter.ScaleFT(FT, int.Parse(resolutionTxt.Text));
+            var scaledFT = ftPlotter.ScaleFT(FT, dft.N);
             
             using (ftBmp.GetBitmapContext())
             {
-                if (int.Parse(resolutionTxt.Text) >= 2540)
+                if (dft.N >= 2540)
                 {
                     for (int n = 0; n < 1270-1; n++)
                     {
@@ -244,28 +246,36 @@ namespace DASPWorkstation
 
         private void windowCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+        }
+
+
+        private void applyWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var _windowFn = new WindowFn();
+
             switch (windowCmb.SelectedIndex)
             {
                 case 0:
-                    // Rectangular
+                    _windowFn.CurrentSingnalWn = _signalGenerator.currentSignal; // Rectangular
                     break;
                 case 1:
-                    // Flat Top
+                    _windowFn.CurrentSingnalWn = _windowFn.ApplyFlatTop(_signalGenerator.currentSignal, dft.N); // Flat Top
                     break;
                 case 2:
-                    // Blackman
+                    _windowFn.CurrentSingnalWn = _windowFn.ApplyBlackman(_signalGenerator.currentSignal, dft.N); // Blackman
                     break;
                 case 3:
-                    // Blackman–Harris
+                    _windowFn.CurrentSingnalWn = _windowFn.ApplyBlackmanHarris(_signalGenerator.currentSignal, dft.N); // Blackman–Harris
                     break;
                 case 4:
-                    // Hamming
+                    _windowFn.CurrentSingnalWn = _windowFn.ApplyHamming(_signalGenerator.currentSignal, dft.N); // Hamming
                     break;
                 case 5:
-                    // Nuttall
+                    _windowFn.CurrentSingnalWn = _windowFn.ApplyNuttall(_signalGenerator.currentSignal, dft.N); // Nuttall
                     break;
                 case 6:
-                    // Blackman–Nuttall
+                    _windowFn.CurrentSingnalWn = _windowFn.ApplyBlackmanNuttall(_signalGenerator.currentSignal, dft.N); // Blackman–Nuttall
                     break;
                 default:
                     break;

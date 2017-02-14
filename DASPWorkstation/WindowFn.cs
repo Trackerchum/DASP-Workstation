@@ -8,6 +8,8 @@ namespace DASPWorkstation
 {
     public class WindowFn
     {
+        public List<float> CurrentSingnalWn = new List<float>();
+
         public List<float> ApplyFlatTop(List<float> signal, int N)
         {
             var wnCoefficients = new List<float>(new float[] { 1.0f, -1.93f, 1.29f, -0.388f, 0.028f });
@@ -48,7 +50,7 @@ namespace DASPWorkstation
         }
 
 
-        public List<float> ApplylackmanNuttall(List<float> signal, int N)
+        public List<float> ApplyBlackmanNuttall(List<float> signal, int N)
         {
             var wnCoefficients = new List<float>(new float[] { 0.3635819f, -0.4891775f, 0.1365995f, -0.0106411f });
             var SignalWn = ApplyWindow(signal, wnCoefficients, N);
