@@ -61,6 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="Complex.cs" />
     <Compile Include="DFT.cs" />
+    <Compile Include="FFT_RadixTwo.cs" />
     <Compile Include="FT_Helper.cs" />
     <Compile Include="FT_Plotter.cs" />
     <Compile Include="SignalDefinition.cs" />

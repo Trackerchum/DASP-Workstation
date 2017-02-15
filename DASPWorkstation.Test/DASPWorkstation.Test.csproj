@@ -61,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DFTSpec.cs" />
+    <Compile Include="FFT_RadixTwoSpec.cs" />
     <Compile Include="FT_HelperSpec.cs" />
     <Compile Include="FT_PlotterSpec.cs" />
     <Compile Include="SignalDefinitionSpec.cs" />
