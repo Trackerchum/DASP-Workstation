@@ -12,136 +12,29 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void BitReversalMustReturnTheCorrectNumberOfValuesTwo()
         {
-            int N = 2;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
+            int resolution = 2;
+            for (int n = 1; n < 12; n++)
+            {
+                var actual = fft.BitReversal(resolution ^ n);
+                Assert.AreEqual(resolution ^ n, actual.Count);
+            }
         }
 
         [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesFour()
+        public void BitReversalMustThrowExceptionIfInvalidNumberPassed()
         {
-            int N = 4;
-            var actual = fft.BitReversal(N);
+            var exceptionThrown = false;
+            try
+            {
+                var actual = fft.BitReversal(3);
+            }
+            // TODO: Create a custom exception type and test for that
+            catch(Exception e)
+            {
+                exceptionThrown = true;
+            }
 
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesEight()
-        {
-            int N = 8;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesSixteen()
-        {
-            int N = 16;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesThirtyTwo()
-        {
-            int N = 32;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesSixtyFour()
-        {
-            int N = 64;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesOneTwoEight()
-        {
-            int N = 128;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesTwoFiveSix()
-        {
-            int N = 256;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesFiveOneTwo()
-        {
-            int N = 512;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesTenTwentyFour()
-        {
-            int N = 1024;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesTwentyFortyEight()
-        {
-            int N = 2048;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesFortyNinetySix()
-        {
-            int N = 4096;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesEightyOneNinetyTwo()
-        {
-            int N = 8192;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesSixteenXXX()
-        {
-            int N = 16384;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
-        }
-
-        [TestMethod]
-        public void BitReversalMustReturnTheCorrectNumberOfValuesEightyThirtyTwoXXX()
-        {
-            int N = 32768;
-            var actual = fft.BitReversal(N);
-
-            Assert.AreEqual(N, actual.Count);
+            Assert.IsTrue(exceptionThrown);
         }
 
         [TestMethod]

@@ -8,17 +8,19 @@ namespace DASPWorkstation
 {
     public class FT_Plotter
     {
+        // TODO: make canvasWidth a parameter and get rid of those hard coded values - JWM
+        private int canvasWidth = 1270;
         List <int> scaledFT = new List<int>();
 
         public List<int> ScaleFT(List<float> ft, int N) 
         {
-            scaledFT = new List<int>(new int[1270]);
+            scaledFT = new List<int>(new int[canvasWidth]);
 
             if (ft.Count >= 2540)
             {
-                scaledFT = new List<int>(new int[1270]);
+                scaledFT = new List<int>(new int[canvasWidth]);
                 float _n;
-                var range = Math.Ceiling((((float)N / 2) / 1269.0f));
+                var range = Math.Ceiling((((float)N / 2) / (float)(canvasWidth - 1)));
 
                 for (int n = 0; n < 1270; n++)
                 {

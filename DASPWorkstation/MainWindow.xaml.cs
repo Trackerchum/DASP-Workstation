@@ -164,10 +164,10 @@ namespace DASPWorkstation
                     windowCmb.IsEnabled = true;
                     dft.N = int.Parse(resolutionTxt.Text);
                     var X = dft.PerformDFT(_signalGenerator.currentSignal);
-                    var Xmag = new List<float>(dft.N);
+                    var Xmag = new List<float>();
                     for (int m = 0; m < dft.N; m++)
                     {
-                        Xmag[m] = _ftHelper.Abs(X[m]);
+                        Xmag.Add(_ftHelper.Abs(X[m]));
                     }
 
                     // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, dft.N, samplingRate);
