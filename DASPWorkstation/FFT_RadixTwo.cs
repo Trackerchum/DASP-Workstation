@@ -8,6 +8,8 @@ namespace DASPWorkstation
 {
     public class FFT_RadixTwo
     {
+        private List<Complex> X = new List<Complex>();
+
         public List<int> BitReversal(int N)
         {
             var BR_Index = new List<int>(new int[N]);
@@ -53,10 +55,18 @@ namespace DASPWorkstation
                 even = signalBR[n * 2];
                 odd = signalBR[n * 2 + 1];
                 X_FirstStage[n * 2] = even + odd;
-                X_FirstStage[n * 2 + 1] = even + (odd* -1);
+                X_FirstStage[n * 2 + 1] = even + (odd * -1);
             }
 
             return X_FirstStage;
+        }
+
+
+        public List<Complex> LastStages(List<float> X_FirstStage)
+        {
+
+
+            return X;
         }
     }
 }

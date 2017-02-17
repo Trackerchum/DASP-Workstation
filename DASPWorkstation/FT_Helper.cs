@@ -15,6 +15,7 @@ namespace DASPWorkstation
             return complexAbs;
         }
 
+
         public List<float> ConvertToDB(List<float> Xmag, int N)
         {
             var XmagDB = new List<float>(new float[N]);
@@ -25,6 +26,9 @@ namespace DASPWorkstation
 
             return XmagDB;
         }
+
+
+        // TODO: prep db for scale - positive
 
 
         public void DEBUG_PrintFT_TextFile(List<float> Xmag, int N, int samplingRate)
