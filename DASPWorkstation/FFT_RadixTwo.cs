@@ -28,28 +28,39 @@ namespace DASPWorkstation
             return BR_Index;
         }
 
+
+        public List<float> BitReverseSignal(List<int> BR_Index, List<float> signal)
+        {
+            var signalBR = new List<float>();
+
+            for (int n = 0; n < BR_Index.Count; n++)
+            {
+                signalBR.Add(signal[BR_Index[n]]);
+            }
+
+            return signalBR;
+        }
+
+
+        public List<float> FirstStage(List<float> signalBR)
+        {
+            var X_FirstStage = new List<float>(new float[signalBR.Count]);
+            float even;
+            float odd;
+
+            for (int n = 0; n < signalBR.Count / 2; n++)
+            {
+                even = signalBR[n * 2];
+                odd = signalBR[n * 2 + 1];
+                X_FirstStage[n * 2] = even + odd;
+                X_FirstStage[n * 2 + 1] = even + (odd* -1);
+            }
+
+            return X_FirstStage;
+        }
     }
 }
 
-
-//                        for (int n = 0; n<N; n++)
-//                        {
-//                            BR = BRar[n];
-//                            BRx[n] = x[BR];
-//                        }
-
-//                        //**************</Bit Reversal>*******************
-
-
-//                        //**************<First Stage>*********************
-//                        for (int n = 0; n<N / 2; n++)
-//                        {
-//                            even = BRx[n * 2];
-//                            odd = BRx[n * 2 + 1];
-//                            Xre[n * 2] = even + odd;
-//                            Xre[n * 2 + 1] = even + (odd* -1);
-//                        }
-//                        //**************</First Stage>********************
 
 
 //                        //**************<Second+ Stages>******************

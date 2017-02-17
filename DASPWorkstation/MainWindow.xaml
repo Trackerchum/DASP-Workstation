@@ -22,7 +22,7 @@
 
         <Button x:Name="addSineBtn" Content="Add Sine Wave" Canvas.Left="350" Canvas.Top="64" Width="134" Height="26" Click="addSineBtn_Click" />
         <Label x:Name="label1" Content="Signals:" Canvas.Left="291" Canvas.Top="98"/>
-        <ComboBox x:Name="sineWavesCmb" Canvas.Left="350" Canvas.Top="99" Width="188" Height="26" SelectionChanged="sineWavesCmb_SelectionChanged" />
+        <ComboBox x:Name="sineWavesCmb" Canvas.Left="350" Canvas.Top="99" Width="188" Height="26" />
         <Button x:Name="editSineBtn" Content="Edit Sine Wave" Canvas.Left="350" Canvas.Top="134" Width="134" Height="26" Click="editSineBtn_Click" />
 
         <Button x:Name="plotSignalBtn" Content="Plot Signal" Canvas.Left="160" Canvas.Top="204" Width="134" Height="26" Click="plotSignalBtn_Click"/>
@@ -48,7 +48,7 @@
 
         <Button x:Name="applyWindowBtn" Content="Apply Window" Canvas.Left="995" Canvas.Top="504" Width="134" Height="26" Click="applyWindowBtn_Click" />
 
-        <ComboBox x:Name="windowCmb" SelectedIndex="0" Canvas.Left="1152" Canvas.Top="504" Width="188" Height="26" SelectionChanged="windowCmb_SelectionChanged" IsEnabled="False" >
+        <ComboBox x:Name="windowCmb" SelectedIndex="0" Canvas.Left="1152" Canvas.Top="504" Width="188" Height="26" IsEnabled="False" >
             <ComboBoxItem Content="Rectangular Window (None)" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Flat Top Window" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Blackman Window" HorizontalAlignment="Left" Width="186"/>
