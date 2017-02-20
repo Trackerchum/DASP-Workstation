@@ -46,5 +46,70 @@ namespace DASPWorkstation.Test
             Assert.IsTrue(specHelper.AreApproximatelyEqual(XmagDB[5], -4.437f));
             Assert.IsTrue(specHelper.AreApproximatelyEqual(XmagDB[7], -7.9588f));
         }
+
+        [TestMethod]
+        public void ComplexMultiplicationMustReturnTheCorrectValueA()
+        {
+            Complex complex1 = new Complex(0.707f, 0.707f);
+            Complex complex2 = new Complex(1.414f, 1.414f);
+
+            var ftHelper = new FT_Helper();
+            Complex result = ftHelper.ComplexMultiplication(complex1, complex2);
+
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(0, result.Real));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(2, result.Imaginary));
+        }
+
+        [TestMethod]
+        public void ComplexMultiplicationMustReturnTheCorrectValueB()
+        {
+            Complex complex1 = new Complex(-0.707f, 0.707f);
+            Complex complex2 = new Complex(1.414f, -1.414f);
+
+            var ftHelper = new FT_Helper();
+            Complex result = ftHelper.ComplexMultiplication(complex1, complex2);
+
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(0, result.Real));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(2, result.Imaginary));
+        }
+
+        [TestMethod]
+        public void ComplexMultiplicationMustReturnTheCorrectValueC()
+        {
+            Complex complex1 = new Complex(0, 1);
+            Complex complex2 = new Complex(-1.414f, 0);
+
+            var ftHelper = new FT_Helper();
+            Complex result = ftHelper.ComplexMultiplication(complex1, complex2);
+
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(0, result.Real));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(-1.414f, result.Imaginary));
+        }
+
+        [TestMethod]
+        public void ComplexMultiplicationMustReturnTheCorrectValueD()
+        {
+            Complex complex1 = new Complex(-0.707f, -0.707f);
+            Complex complex2 = new Complex(1.414f, 1.414f);
+
+            var ftHelper = new FT_Helper();
+            Complex result = ftHelper.ComplexMultiplication(complex1, complex2);
+
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(0, result.Real));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(-2, result.Imaginary));
+        }
+
+        [TestMethod]
+        public void ComplexMultiplicationMustReturnTheCorrectValueE()
+        {
+            Complex complex1 = new Complex(0.707f, -0.707f);
+            Complex complex2 = new Complex(1.414f, -1.414f);
+
+            var ftHelper = new FT_Helper();
+            Complex result = ftHelper.ComplexMultiplication(complex1, complex2);
+
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(0, result.Real));
+            Assert.IsTrue(specHelper.AreApproximatelyEqual(-2, result.Imaginary));
+        }
     }
 }

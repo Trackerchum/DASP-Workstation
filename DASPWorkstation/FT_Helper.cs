@@ -16,6 +16,19 @@ namespace DASPWorkstation
         }
 
 
+        public Complex ComplexMultiplication(Complex complex1, Complex complex2)
+        {
+            Complex complexMult = new Complex(0, 0);
+
+            complexMult.Real = complexMult.Real + (complex1.Real * complex2.Real);
+            complexMult.Imaginary = complexMult.Imaginary + (complex1.Real * complex2.Imaginary);
+            complexMult.Imaginary = complexMult.Imaginary + (complex1.Imaginary * complex2.Real);
+            complexMult.Real = complexMult.Real + ((complex1.Imaginary * complex2.Imaginary) * -1);
+
+            return complexMult;
+        }
+
+
         public List<float> ConvertToDB(List<float> Xmag, int N)
         {
             var XmagDB = new List<float>(new float[N]);
