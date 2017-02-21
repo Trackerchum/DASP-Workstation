@@ -41,10 +41,22 @@
             </Canvas.Background>
         </Canvas>
 
-        <Label x:Name="label2" Content="Resolution:" Canvas.Left="140" Canvas.Top="504"/>
-        <TextBox x:Name="resolutionTxt" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="216" Canvas.Top="508" />
-        <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="350" Canvas.Top="504" Width="134" Height="26" Click="plotDFTBtn_Click" />
-        <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="500" Canvas.Top="504" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
+        <Label x:Name="label2" Content="Resolution:" Canvas.Left="70" Canvas.Top="474"/>
+        <TextBox x:Name="resolutionTxt" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="146" Canvas.Top="478" />
+        <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="96" Canvas.Top="507" Width="134" Height="26" Click="plotDFTBtn_Click" />
+        <Label x:Name="label3" Content="Resolution:" Canvas.Left="270" Canvas.Top="474"/>
+        <ComboBox x:Name="FFT_ResCmb" SelectedIndex="0" Canvas.Left="343" Canvas.Top="475" Width="188" Height="26" >
+            <ComboBoxItem Content="512" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="1024" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="2048" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="4096" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="8192" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="16384" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="32768" HorizontalAlignment="Left" Width="186"/>
+            <ComboBoxItem Content="65536" HorizontalAlignment="Left" Width="186"/>
+        </ComboBox>
+        <Button x:Name="plotFFTBtn" Content="Plot Radix-2 FFT" Canvas.Left="371" Canvas.Top="507" Width="134" Height="26" Click="plotFFTBtn_Click" />
+        <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="630" Canvas.Top="504" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
 
         <Button x:Name="applyWindowBtn" Content="Apply Window" Canvas.Left="995" Canvas.Top="504" Width="134" Height="26" Click="applyWindowBtn_Click" />
 

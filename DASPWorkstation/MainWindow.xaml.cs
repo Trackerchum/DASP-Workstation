@@ -18,6 +18,7 @@ namespace DASPWorkstation
         private Validator _validator = new Validator();
         private FT_Helper _ftHelper = new FT_Helper();
         private DFT dft = new DFT();
+        private FFT_RadixTwo radix2FFT = new FFT_RadixTwo();
 
         public MainWindow()
         {
@@ -56,9 +57,9 @@ namespace DASPWorkstation
                 var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
                 using (signalBmp.GetBitmapContext())
                 {
-                    for (int n = 1; n < 1270; n++)
+                    for (int n = 1; n < 1270-1; n++)
                     {
-                        signalBmp.SetPixel(n, scaledSignal[n] + 1, Colors.Black);
+                        signalBmp.DrawLine(n, scaledSignal[n], n + 1, scaledSignal[n + 1], Colors.Black);
                     }
                 }
                 waveform.Source = signalBmp;
@@ -182,6 +183,37 @@ namespace DASPWorkstation
             else
             {
                 MessageBox.Show("Signal must be ploted before DFT can be performed", "Error");
+            }
+        }
+
+
+        private void plotFFTBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (_signalGenerator.currentSignal.Count != 0)
+            {
+                dft.N = Convert.ToInt32((FFT_ResCmb.SelectedValue as ComboBoxItem).Content);
+                var X = radix2FFT.PerformRadixTwoFFT(_signalGenerator.currentSignal, dft.N);
+                var Xmag = new List<float>();
+                for (int m = 0; m < dft.N; m++)
+                {
+                    Xmag.Add(_ftHelper.Abs(X[m]));
+                }
+
+                _ftHelper.DEBUG_PrintFT_TextFile(Xmag, dft.N, samplingRate);
+
+                if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
+                {
+                    plotFT(Xmag);
+                }
+                else
+                {
+                    var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
+                    plotFT(XmagDB);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Signal must be ploted before FFT can be performed", "Error");
             }
         }
 

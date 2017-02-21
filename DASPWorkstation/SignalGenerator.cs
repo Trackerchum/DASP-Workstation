@@ -13,11 +13,11 @@ namespace DASPWorkstation
 
         public List<float> GenerateSignal(List<SignalDefinition> signalParameters, int samplingRate)
         {
-            currentSignal = new List<float>(new float[samplingRate]);
+            currentSignal = new List<float>(new float[65536]);
             
             for (int x = 0; x < signalParameters.Count; x++)
             {
-                for (int n = 0; n < samplingRate; n++)
+                for (int n = 0; n < 65536; n++)
                 {
                     currentSignal[n] = currentSignal[n] + (signalParameters[x].Amplitude * (float)(Math.Sin(2 * Math.PI * n * signalParameters[x].Frequency / samplingRate + (signalParameters[x].Phase * (Math.PI / 180)))));
                 }
