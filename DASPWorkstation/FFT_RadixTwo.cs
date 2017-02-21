@@ -104,11 +104,11 @@ namespace DASPWorkstation
                         //Xre[(Wdivide / 2) + m] = reSH;
                         //Xim[Wdivide / 2 + m] = imSH;
 
-                        Complex FH = ftHelper.ComplexMultiplication(new Complex(X[(Wdivide / 2) + m].Real, X[(Wdivide / 2) + m].Imaginary), new Complex((((float)Math.Cos(2 * Math.PI * n) / Wdivide)), (-1 * ((float)Math.Sin(2 * Math.PI * n / Wdivide)))));
+                        Complex FH = ftHelper.ComplexMultiplication(new Complex(X[(Wdivide / 2) + m].Real, X[(Wdivide / 2) + m].Imaginary), new Complex((((float)Math.Cos(2 * Math.PI * n) / Wdivide)), (-1 * ((float)Math.Sin((2 * Math.PI * n) / Wdivide)))));
                         FH.Real = FH.Real + X[m].Real;
                         FH.Imaginary = FH.Imaginary + X[m].Imaginary;
 
-                        Complex SH = ftHelper.ComplexMultiplication(new Complex(X[m + (Wdivide / 2)].Real, X[Wdivide / 2 + m].Imaginary), new Complex((((float)Math.Cos(2 * Math.PI * (n + (Wdivide / 2))) / Wdivide)), (-1 * ((float)Math.Sin(2 * Math.PI * (Wdivide / 2 + m) / Wdivide)))));
+                        Complex SH = ftHelper.ComplexMultiplication(new Complex(X[m + (Wdivide / 2)].Real, X[Wdivide / 2 + m].Imaginary), new Complex((((float)Math.Cos(2 * Math.PI * (n + (Wdivide / 2))) / Wdivide)), (-1 * ((float)Math.Sin(2 * Math.PI * ((Wdivide / 2) + m) / Wdivide)))));
                         SH.Real = SH.Real + X[m].Real;
                         SH.Imaginary = SH.Imaginary + X[m].Imaginary;
 
