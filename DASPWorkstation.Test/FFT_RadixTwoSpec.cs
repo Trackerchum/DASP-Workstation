@@ -133,10 +133,19 @@ namespace DASPWorkstation.Test
         }
 
         [TestMethod]
-        public void FFT_RadixTwoMustReturnTheCorrectValues()
+        public void FFT_RadixTwoMustReturnTheCorrectValuesSixteen()
         {
             var N = 16;
-            var x = new List<float>(new float[] { 0.4f, 1.3066f, 1.1314f, 0.235f, 0.8f, 0.5412f, 0.5657f, 2.0457f, -0.4f, -1.3066f, -1.1314f, -0.235f, -0.8f, -0.5412f, -0.5657f, -2.0457f });
+            var x = new List<float>();
+
+            for (int n = 0; n < N; n++)
+            {
+                x.Add((float)(Math.Sin((2*Math.PI*n*1000)/ 16000.0f)) 
+                    + (0.8f* (float)((Math.Sin((2 * Math.PI * n * 3000) / 16000.0f)))) 
+                    + (0.6f*((float)(Math.Sin((2 * Math.PI * n * 5000) / 16000.0f)))) 
+                    + (0.4f* (float)(Math.Cos((2 * Math.PI * n * 7000) / 16000.0f))));
+            }
+            
             var X = fft.PerformRadixTwoFFT(x, N);
 
             Assert.IsTrue(specHelper.AreApproximatelyEqual(X[0].Real, 0));
