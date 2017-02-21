@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,15 @@ namespace DASPWorkstation
             var signalBR = BitReverseSignal(BR_Index, signal);
             var X_FirstStage = FirstStage(signalBR);
             X = LastStages(X_FirstStage);
+
+            var FT_DEBUG_LIST = new List<string>();
+
+            for (int n = 0; n < N; n++)
+            {
+                FT_DEBUG_LIST.Add($"Bin {n}, {X[n].Real}, {X[n].Imaginary}");
+            }
+
+            File.WriteAllLines("DEBUG DFT or FFT output.txt", FT_DEBUG_LIST);
 
             return X;
         }
