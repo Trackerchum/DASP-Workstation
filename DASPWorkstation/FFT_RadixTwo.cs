@@ -87,6 +87,7 @@ namespace DASPWorkstation
                 X.Add(new Complex(X_FirstStage[m], 0));
             }
 
+
             for (int stage = 2; stage <= Math.Log(N) / Math.Log(2); stage++) // loop for each stage of fft 
             {
                 var m = 0;

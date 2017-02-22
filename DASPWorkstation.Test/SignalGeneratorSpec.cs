@@ -23,7 +23,7 @@ namespace DASPWorkstation.Test
 
             var unit = new SignalGenerator();
             var res = unit.GenerateSignal(signalDefinitions, samplingRate);
-            Assert.AreEqual(samplingRate, res.Count);
+            Assert.AreEqual(65536, res.Count);
         }
 
         [TestMethod]
