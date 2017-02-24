@@ -8,33 +8,35 @@ namespace DASPWorkstation
 {
     public class FT_Plotter
     {
-        // TODO: make canvasWidth a parameter and get rid of those hard coded values - JWM
+        
         private int canvasWidth = 1270;
+        private int canvasLength = 200;
+
         List <int> scaledFT = new List<int>();
 
         public List<int> ScaleFT(List<float> ft, int N) 
         {
             scaledFT = new List<int>(new int[canvasWidth]);
 
-            if (ft.Count >= 2540)
+            if (ft.Count >= canvasWidth*2)
             {
                 scaledFT = new List<int>(new int[canvasWidth]);
                 float _n;
-                var range = Math.Ceiling((((float)N / 2) / (float)(canvasWidth - 1)));
+                var range = Math.Ceiling((((float)N / 2) / (canvasWidth - 1)));
 
-                for (int n = 0; n < 1270; n++)
+                for (int n = 0; n < canvasWidth; n++)
                 {
                     _n = 0;
 
                     for (int l = 0; l < range; l++)
                     {
-                        if (ft[(int)((((float)N / 2) / 1269.0f) * n) + l] > _n)
+                        if (ft[(int)((((float)N / 2) / (canvasWidth-1)) * n) + l] > _n)
                         {
-                            _n = ft[(int)((((float)N / 2) / 1269.0f) * n) + l];
+                            _n = ft[(int)((((float)N / 2) / (canvasWidth - 1)) * n) + l];
                         }
                     }
 
-                    scaledFT[n] = (((int)((_n / ft.Max()) * 200)) - 200) * -1;
+                    scaledFT[n] = (((int)((_n / ft.Max()) * canvasLength)) - canvasLength) * -1;
                 }
             }
             else
@@ -43,7 +45,7 @@ namespace DASPWorkstation
 
                 for (int n = 0; n <= N / 2; n++)
                 {
-                    scaledFT[n] = (((int)((ft[n] / ft.Max()) * 200)) - 200) * -1;
+                    scaledFT[n] = (((int)((ft[n] / ft.Max()) * canvasLength)) - canvasLength) * -1;
                 }
             }
 
