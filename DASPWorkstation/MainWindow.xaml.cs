@@ -199,7 +199,7 @@ namespace DASPWorkstation
                     Xmag.Add(_ftHelper.Abs(X[m]));
                 }
 
-                _ftHelper.DEBUG_PrintFT_TextFile(Xmag, dft.N, samplingRate);
+                // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, dft.N, samplingRate);
 
                 if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
                 {
@@ -208,6 +208,7 @@ namespace DASPWorkstation
                 else
                 {
                     var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
+                    // TODO: write and implement function to prep db for scale
                     plotFT(XmagDB);
                 }
             }
