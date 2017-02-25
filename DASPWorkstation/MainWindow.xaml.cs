@@ -17,6 +17,7 @@ namespace DASPWorkstation
         private SignalGenerator _signalGenerator = new SignalGenerator();
         private Validator _validator = new Validator();
         private FT_Helper _ftHelper = new FT_Helper();
+        private FT_Plotter ftPlotter = new FT_Plotter();
         private DFT dft = new DFT();
         private FFT_RadixTwo radix2FFT = new FFT_RadixTwo();
 
@@ -234,7 +235,6 @@ namespace DASPWorkstation
 
         public void plotFT(List <float> FT) 
         {
-            var ftPlotter = new FT_Plotter();
             WriteableBitmap ftBmp = BitmapFactory.New(1270, 202);
             Image ftImage = new Image();
             var scaledFT = ftPlotter.ScaleFT(FT, dft.N);
