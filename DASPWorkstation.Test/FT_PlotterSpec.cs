@@ -8,10 +8,11 @@ namespace DASPWorkstation.Test
     [TestClass]
     public class FT_PlotterSpec
     {
+        private FT_Plotter ftPlotter = new FT_Plotter();
+
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectNumberOfValuesUnderLength()
         {
-            var ftPlotter = new FT_Plotter();
             int N = new Random().Next(1269);
             var FT = new List<float>(new float[N]);
             var res = ftPlotter.ScaleFT(FT, N);
@@ -22,7 +23,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectNumberOfValuesOverLength()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 5000;
             var FT = new List<float>(new float[N]);
             var res = ftPlotter.ScaleFT(FT, N);
@@ -33,7 +33,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_MaxValueShouldBeTwoHundred()
         {
-            var ftPlotter = new FT_Plotter();
             int N = new Random().Next(48000);
             var FT = new List<float>(new float[N]);
             FT[0] = 50;
@@ -45,7 +44,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesZero()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
@@ -57,7 +55,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesOne()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
@@ -69,7 +66,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesTwo()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
@@ -81,7 +77,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesThree()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
@@ -93,7 +88,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesFour()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
@@ -105,7 +99,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesFive()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
@@ -117,7 +110,6 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesSix()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
@@ -129,13 +121,33 @@ namespace DASPWorkstation.Test
         [TestMethod]
         public void ScaleFT_ShouldReturnTheCorrectValuesSeven()
         {
-            var ftPlotter = new FT_Plotter();
             int N = 16;
             var FT = new List<float>(new float[] { 0, 8, 0, 6.4f, 0, 4.8f, 0, 3.2f, 0, 3.2f, 0, 4.8f, 0, 6.4f, 0, 8 });
 
             var res = ftPlotter.ScaleFT(FT, N);
             
             Assert.AreEqual((((3.2 / 8) * 200) - 200) * -1, res[7]);
+        }
+
+        [TestMethod]
+        public void PrepDBForScaleMinValueShouldBeZero()
+        {
+            var XmagDB = new List<float>(new float[] { 0, -8, -50, -6.4f, -154.86f, -4.8f, 0, -3.2f, 0, -3.2f, 0, -4.8f, 0, -6.4f, 0, -8 });
+            var res = ftPlotter.PrepDB(XmagDB);
+
+            Assert.AreEqual(0, res.Min());
+        }
+
+        [TestMethod]
+        public void PrepDBForScaleShouldReturnTheCorrectvalue()
+        {
+            var XmagDB = new List<float>(new float[] { 0, -8, -50, -6.4f, -154.86f, -4.8f, 0, -3.2f, 0, -3.2f, 0, -4.8f, 0, -6.4f, 0, -8 });
+            var res = ftPlotter.PrepDB(XmagDB);
+
+            Assert.AreEqual(154.86f, res[0]);
+            Assert.AreEqual(-8 + 154.86f, res[1]);
+            Assert.AreEqual(-50 + 154.86f, res[2]);
+            Assert.AreEqual(-3.2f + 154.86f, res[7]);
         }
     }
 }

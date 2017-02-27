@@ -173,8 +173,8 @@ namespace DASPWorkstation
                     else
                     {
                         var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
-                        // TODO: write and implement function to prep db for scale
-                        plotFT(XmagDB);
+                        var preppedDB = ftPlotter.PrepDB(XmagDB);
+                        plotFT(preppedDB);
                     }
                 }
                 else
@@ -210,8 +210,8 @@ namespace DASPWorkstation
                 else
                 {
                     var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
-                    // TODO: write and implement function to prep db for scale
-                    plotFT(XmagDB);
+                    var preppedDB = ftPlotter.PrepDB(XmagDB);
+                    plotFT(preppedDB);
                 }
             }
             else

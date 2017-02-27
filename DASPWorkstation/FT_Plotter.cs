@@ -14,6 +14,21 @@ namespace DASPWorkstation
 
         List <int> scaledFT = new List<int>();
 
+
+        public List<float> PrepDB(List<float> XmagDB)
+        {
+            var preppedDB = new List<float>();
+            var MinValue = XmagDB.Min()*-1;
+
+            for (int m = 0; m < XmagDB.Count; m++)
+            {
+                preppedDB.Add(XmagDB[m] + MinValue);
+            }
+
+            return preppedDB;
+        }
+
+
         public List<int> ScaleFT(List<float> ft, int N) 
         {
             scaledFT = new List<int>(new int[canvasWidth]);
