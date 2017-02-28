@@ -25,27 +25,27 @@
         <ComboBox x:Name="sineWavesCmb" Canvas.Left="350" Canvas.Top="99" Width="188" Height="26" />
         <Button x:Name="editSineBtn" Content="Edit Sine Wave" Canvas.Left="350" Canvas.Top="134" Width="134" Height="26" Click="editSineBtn_Click" />
 
-        <Button x:Name="plotSignalBtn" Content="Plot Signal" Canvas.Left="160" Canvas.Top="204" Width="134" Height="26" Click="plotSignalBtn_Click"/>
-        <Label x:Name="label11" Content="Sampling Rate:" Canvas.Left="1050" Canvas.Top="204"/>
-        <ComboBox x:Name="samplingRateCmb" SelectedIndex="1" Canvas.Left="1152" Canvas.Top="204" Width="188" Height="26" SelectionChanged="samplingRateCmb_SelectionChanged">
+        <Button x:Name="plotSignalBtn" Content="Plot Signal" Canvas.Left="190" Canvas.Top="204" Width="134" Height="26" Click="plotSignalBtn_Click"/>
+        <Label x:Name="label11" Content="Sampling Rate:" Canvas.Left="1080" Canvas.Top="204"/>
+        <ComboBox x:Name="samplingRateCmb" SelectedIndex="1" Canvas.Left="1182" Canvas.Top="204" Width="188" Height="26" SelectionChanged="samplingRateCmb_SelectionChanged">
             <ComboBoxItem Content="44.1kHz" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="48kHz" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="96kHz" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="192kHz" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
-        <Button x:Name="clearSignalBtn" Content="Clear Signal" Canvas.Left="350" Canvas.Top="204" Width="134" Height="26" Click="clearSignalBtn_Click" />
+        <Button x:Name="clearSignalBtn" Content="Clear Signal" Canvas.Left="380" Canvas.Top="204" Width="134" Height="26" Click="clearSignalBtn_Click" />
 
-        <Canvas Name="signalCanvas" Height="202" Canvas.Left="70" Canvas.Top="247" Width="1270" >
+        <Canvas Name="signalCanvas" Height="202" Canvas.Left="100" Canvas.Top="247" Width="1270" >
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="5"/>
             </Canvas.Background>
         </Canvas>
 
-        <Label x:Name="label2" Content="Resolution:" Canvas.Left="70" Canvas.Top="474"/>
-        <TextBox x:Name="resolutionTxt" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="146" Canvas.Top="478" />
-        <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="96" Canvas.Top="507" Width="134" Height="26" Click="plotDFTBtn_Click" />
-        <Label x:Name="label3" Content="Resolution:" Canvas.Left="270" Canvas.Top="474"/>
-        <ComboBox x:Name="FFT_ResCmb" SelectedIndex="0" Canvas.Left="343" Canvas.Top="475" Width="188" Height="26" >
+        <Label x:Name="label2" Content="Resolution:" Canvas.Left="100" Canvas.Top="474"/>
+        <TextBox x:Name="resolutionTxt" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="176" Canvas.Top="478" />
+        <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="126" Canvas.Top="507" Width="134" Height="26" Click="plotDFTBtn_Click" />
+        <Label x:Name="label3" Content="Resolution:" Canvas.Left="300" Canvas.Top="474"/>
+        <ComboBox x:Name="FFT_ResCmb" SelectedIndex="0" Canvas.Left="373" Canvas.Top="475" Width="188" Height="26" >
             <ComboBoxItem Content="512" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="1024" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="2048" HorizontalAlignment="Left" Width="186"/>
@@ -55,12 +55,12 @@
             <ComboBoxItem Content="32768" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="65536" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
-        <Button x:Name="plotFFTBtn" Content="Plot Radix-2 FFT" Canvas.Left="371" Canvas.Top="507" Width="134" Height="26" Click="plotFFTBtn_Click" />
-        <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="630" Canvas.Top="504" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
+        <Button x:Name="plotFFTBtn" Content="Plot Radix-2 FFT" Canvas.Left="401" Canvas.Top="507" Width="134" Height="26" Click="plotFFTBtn_Click" />
+        <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="660" Canvas.Top="504" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
 
-        <Button x:Name="applyWindowBtn" Content="Apply Window" Canvas.Left="995" Canvas.Top="504" Width="134" Height="26" Click="applyWindowBtn_Click" />
+        <Button x:Name="applyWindowBtn" Content="Apply Window" Canvas.Left="1025" Canvas.Top="504" Width="134" Height="26" Click="applyWindowBtn_Click" />
 
-        <ComboBox x:Name="windowCmb" SelectedIndex="0" Canvas.Left="1152" Canvas.Top="504" Width="188" Height="26" IsEnabled="False" >
+        <ComboBox x:Name="windowCmb" SelectedIndex="0" Canvas.Left="1182" Canvas.Top="504" Width="188" Height="26" IsEnabled="False" >
             <ComboBoxItem Content="Rectangular Window (None)" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Flat Top Window" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Blackman Window" HorizontalAlignment="Left" Width="186"/>
@@ -70,11 +70,14 @@
             <ComboBoxItem Content="Blackman–Nuttall Window" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
 
-        <Canvas Name="fourierCanvas" Height="202" Canvas.Left="70" Canvas.Top="547" Width="1270" >
+        <Canvas Name="fourierCanvas" Height="202" Canvas.Left="100" Canvas.Top="547" Width="1270" >
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="5"/>
             </Canvas.Background>
         </Canvas>
+        <Label x:Name="maxSigLbl" Content="1" Canvas.Left="49" Canvas.Top="234"/>
+        <Label x:Name="midSigLbl" Content="0" Canvas.Left="49" Canvas.Top="332"/>
+        <Label x:Name="minSigLbl" Content="-1" Canvas.Left="49" Canvas.Top="432"/>
 
     </Canvas>
 </Window>
