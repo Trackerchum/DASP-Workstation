@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -67,6 +68,10 @@ namespace DASPWorkstation
 
                 signalCanvas.Children.Clear();
                 signalCanvas.Children.Add(waveform);
+
+                maxSigLbl.Content = Math.Round((decimal)signal.Max(), 4);
+                minSigLbl.Content = Math.Round((-1*(decimal)signal.Max()), 4);
+
             }
             else
             {
@@ -169,12 +174,14 @@ namespace DASPWorkstation
                     if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
                     {
                         plotFT(Xmag);
+                        PlotFTLabels(Xmag);
                     }
                     else
                     {
                         var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
                         var preppedDB = ftPlotter.PrepDB(XmagDB);
                         plotFT(preppedDB);
+                        PlotFTLabels(XmagDB);
                     }
                 }
                 else
@@ -206,12 +213,14 @@ namespace DASPWorkstation
                 if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
                 {
                     plotFT(Xmag);
+                    PlotFTLabels(Xmag);
                 }
                 else
                 {
                     var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
                     var preppedDB = ftPlotter.PrepDB(XmagDB);
                     plotFT(preppedDB);
+                    PlotFTLabels(XmagDB);
                 }
             }
             else
@@ -271,29 +280,40 @@ namespace DASPWorkstation
             switch (windowCmb.SelectedIndex)
             {
                 case 0:
-                    _windowFn.CurrentSingnalWn = _signalGenerator.currentSignal; // Rectangular
+                    _windowFn.CurrentSignalWn = _signalGenerator.currentSignal; // Rectangular
                     break;
                 case 1:
-                    _windowFn.CurrentSingnalWn = _windowFn.ApplyFlatTop(_signalGenerator.currentSignal, dft.N); // Flat Top
+                    _windowFn.CurrentSignalWn = _windowFn.ApplyFlatTop(_signalGenerator.currentSignal, dft.N); // Flat Top
                     break;
                 case 2:
-                    _windowFn.CurrentSingnalWn = _windowFn.ApplyBlackman(_signalGenerator.currentSignal, dft.N); // Blackman
+                    _windowFn.CurrentSignalWn = _windowFn.ApplyBlackman(_signalGenerator.currentSignal, dft.N); // Blackman
                     break;
                 case 3:
-                    _windowFn.CurrentSingnalWn = _windowFn.ApplyBlackmanHarris(_signalGenerator.currentSignal, dft.N); // Blackman–Harris
+                    _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanHarris(_signalGenerator.currentSignal, dft.N); // Blackman–Harris
                     break;
                 case 4:
-                    _windowFn.CurrentSingnalWn = _windowFn.ApplyHamming(_signalGenerator.currentSignal, dft.N); // Hamming
+                    _windowFn.CurrentSignalWn = _windowFn.ApplyHamming(_signalGenerator.currentSignal, dft.N); // Hamming
                     break;
                 case 5:
-                    _windowFn.CurrentSingnalWn = _windowFn.ApplyNuttall(_signalGenerator.currentSignal, dft.N); // Nuttall
+                    _windowFn.CurrentSignalWn = _windowFn.ApplyNuttall(_signalGenerator.currentSignal, dft.N); // Nuttall
                     break;
                 case 6:
-                    _windowFn.CurrentSingnalWn = _windowFn.ApplyBlackmanNuttall(_signalGenerator.currentSignal, dft.N); // Blackman–Nuttall
+                    _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanNuttall(_signalGenerator.currentSignal, dft.N); // Blackman–Nuttall
                     break;
                 default:
                     break;
             }
+        }
+
+        private void PlotFTLabels(List<float> FT)
+        {
+            var quart = Math.Sqrt((FT.Max() - FT.Min()) * (FT.Max() - FT.Min())) / 4;
+
+            maxFtLbl.Content = Math.Round((decimal)FT.Max(), 2);
+            upperFtLbl.Content = Math.Round((decimal)(FT.Max() - quart), 2);
+            midFtLbl.Content = Math.Round((decimal)(FT.Max() - (quart * 2)), 2);
+            lowerFtLbl.Content = Math.Round((decimal)(FT.Max() - (quart * 3)), 2);
+            minFtLbl.Content = Math.Round((decimal)FT.Min(), 2);
         }
     }
 }

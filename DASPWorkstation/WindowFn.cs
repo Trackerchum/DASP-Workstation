@@ -8,7 +8,7 @@ namespace DASPWorkstation
 {
     public class WindowFn
     {
-        public List<float> CurrentSingnalWn = new List<float>();
+        public List<float> CurrentSignalWn = new List<float>();
 
         public List<float> ApplyFlatTop(List<float> signal, int N)
         {

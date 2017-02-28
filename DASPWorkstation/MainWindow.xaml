@@ -75,9 +75,15 @@
                 <SolidColorBrush Color="White" Opacity="5"/>
             </Canvas.Background>
         </Canvas>
-        <Label x:Name="maxSigLbl" Content="1" Canvas.Left="49" Canvas.Top="234"/>
-        <Label x:Name="midSigLbl" Content="0" Canvas.Left="49" Canvas.Top="332"/>
-        <Label x:Name="minSigLbl" Content="-1" Canvas.Left="49" Canvas.Top="432"/>
+        <Label x:Name="maxSigLbl" Content="1" Canvas.Left="40" Canvas.Top="234" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="midSigLbl" Content="0" Canvas.Left="73" Canvas.Top="333"/>
+        <Label x:Name="minSigLbl" Content="-1" Canvas.Left="40" Canvas.Top="432" Width="55" HorizontalContentAlignment="Right" />
+        
+        <Label x:Name="maxFtLbl" Content="0" Canvas.Left="40" Canvas.Top="534" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="upperFtLbl" Content="0" Canvas.Left="40" Canvas.Top="584" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="midFtLbl" Content="0" Canvas.Left="40" Canvas.Top="633" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="lowerFtLbl" Content="0" Canvas.Left="40" Canvas.Top="684" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="minFtLbl" Content="0" Canvas.Left="40" Canvas.Top="732" Width="55" HorizontalContentAlignment="Right" />
 
     </Canvas>
 </Window>
