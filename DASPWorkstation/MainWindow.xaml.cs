@@ -275,35 +275,44 @@ namespace DASPWorkstation
 
         private void applyWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            var _windowFn = new WindowFn();
-
-            switch (windowCmb.SelectedIndex)
+            if (_signalGenerator.currentSignal.Count != 0)
             {
-                case 0:
-                    _windowFn.CurrentSignalWn = _signalGenerator.currentSignal; // Rectangular
-                    break;
-                case 1:
-                    _windowFn.CurrentSignalWn = _windowFn.ApplyFlatTop(_signalGenerator.currentSignal, dft.N); // Flat Top
-                    break;
-                case 2:
-                    _windowFn.CurrentSignalWn = _windowFn.ApplyBlackman(_signalGenerator.currentSignal, dft.N); // Blackman
-                    break;
-                case 3:
-                    _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanHarris(_signalGenerator.currentSignal, dft.N); // Blackman–Harris
-                    break;
-                case 4:
-                    _windowFn.CurrentSignalWn = _windowFn.ApplyHamming(_signalGenerator.currentSignal, dft.N); // Hamming
-                    break;
-                case 5:
-                    _windowFn.CurrentSignalWn = _windowFn.ApplyNuttall(_signalGenerator.currentSignal, dft.N); // Nuttall
-                    break;
-                case 6:
-                    _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanNuttall(_signalGenerator.currentSignal, dft.N); // Blackman–Nuttall
-                    break;
-                default:
-                    break;
-            }
+                var _windowFn = new WindowFn();
 
+                switch (windowCmb.SelectedIndex)
+                {
+                    case 0:
+                        _windowFn.CurrentSignalWn = _signalGenerator.currentSignal; // Rectangular
+                        break;
+                    case 1:
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyFlatTop(_signalGenerator.currentSignal, dft.N); // Flat Top
+                        break;
+                    case 2:
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackman(_signalGenerator.currentSignal, dft.N); // Blackman
+                        break;
+                    case 3:
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanHarris(_signalGenerator.currentSignal, dft.N); // Blackman–Harris
+                        break;
+                    case 4:
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyHamming(_signalGenerator.currentSignal, dft.N); // Hamming
+                        break;
+                    case 5:
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyNuttall(_signalGenerator.currentSignal, dft.N); // Nuttall
+                        break;
+                    case 6:
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanNuttall(_signalGenerator.currentSignal, dft.N); // Blackman–Nuttall
+                        break;
+                    default:
+                        break;
+                }
+
+                // TODO: implement windowing
+
+            }
+            else
+            {
+                MessageBox.Show("Signal must be ploted before Window can be applied", "Error");
+            }
 
 
         }
