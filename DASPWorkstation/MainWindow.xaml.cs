@@ -14,6 +14,9 @@ namespace DASPWorkstation
     public partial class MainWindow : Window
     {
         int samplingRate = 48000;
+        int resolution;
+        bool DFT_FFT;
+
         private SignalHelper _signalHelper = new SignalHelper();
         private SignalGenerator _signalGenerator = new SignalGenerator();
         private Validator _validator = new Validator();
@@ -160,16 +163,17 @@ namespace DASPWorkstation
                 var statusCode = _validator.ValidateDFTResolution(resolutionTxt.Text);
                 if (statusCode == Validator.ValidatorStatusCode.OK)
                 {
+                    DFT_FFT = false;
                     windowCmb.IsEnabled = true;
-                    dft.N = int.Parse(resolutionTxt.Text);
+                    resolution = int.Parse(resolutionTxt.Text);
                     var X = dft.PerformDFT(_signalGenerator.currentSignal);
                     var Xmag = new List<float>();
-                    for (int m = 0; m < dft.N; m++)
+                    for (int m = 0; m < resolution; m++)
                     {
                         Xmag.Add(_ftHelper.Abs(X[m]));
                     }
 
-                    // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, dft.N, samplingRate);
+                    // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, resolution, samplingRate);
 
                     if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
                     {
@@ -178,7 +182,7 @@ namespace DASPWorkstation
                     }
                     else
                     {
-                        var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
+                        var XmagDB = _ftHelper.ConvertToDB(Xmag, resolution);
                         var preppedDB = ftPlotter.PrepDB(XmagDB);
                         plotFT(preppedDB);
                         PlotFTLabels(XmagDB);
@@ -200,15 +204,16 @@ namespace DASPWorkstation
         {
             if (_signalGenerator.currentSignal.Count != 0)
             {
-                dft.N = Convert.ToInt32((FFT_ResCmb.SelectedValue as ComboBoxItem).Content);
-                var X = radix2FFT.PerformRadixTwoFFT(_signalGenerator.currentSignal, dft.N);
+                DFT_FFT = true;
+                resolution = Convert.ToInt32((FFT_ResCmb.SelectedValue as ComboBoxItem).Content);
+                var X = radix2FFT.PerformRadixTwoFFT(_signalGenerator.currentSignal, resolution);
                 var Xmag = new List<float>();
-                for (int m = 0; m < dft.N; m++)
+                for (int m = 0; m < resolution; m++)
                 {
                     Xmag.Add(_ftHelper.Abs(X[m]));
                 }
 
-                // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, dft.N, samplingRate);
+                // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, resolution, samplingRate);
 
                 if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
                 {
@@ -217,7 +222,7 @@ namespace DASPWorkstation
                 }
                 else
                 {
-                    var XmagDB = _ftHelper.ConvertToDB(Xmag, dft.N);
+                    var XmagDB = _ftHelper.ConvertToDB(Xmag, resolution);
                     var preppedDB = ftPlotter.PrepDB(XmagDB);
                     plotFT(preppedDB);
                     PlotFTLabels(XmagDB);
@@ -247,11 +252,12 @@ namespace DASPWorkstation
         {
             WriteableBitmap ftBmp = BitmapFactory.New(1270, 202);
             Image ftImage = new Image();
-            var scaledFT = ftPlotter.ScaleFT(FT, dft.N);
+            resolution = FT.Count;
+            var scaledFT = ftPlotter.ScaleFT(FT, resolution);
             
             using (ftBmp.GetBitmapContext())
             {
-                if (dft.N >= 2540)
+                if (resolution >= 2540)
                 {
                     for (int n = 0; n < 1270-1; n++)
                     {
@@ -275,7 +281,7 @@ namespace DASPWorkstation
 
         private void applyWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (_signalGenerator.currentSignal.Count != 0)
+            if (_signalGenerator.currentSignal.Count != 0 || ftPlotter.scaledFT.Count != 0)
             {
                 var _windowFn = new WindowFn();
 
@@ -285,33 +291,62 @@ namespace DASPWorkstation
                         _windowFn.CurrentSignalWn = _signalGenerator.currentSignal; // Rectangular
                         break;
                     case 1:
-                        _windowFn.CurrentSignalWn = _windowFn.ApplyFlatTop(_signalGenerator.currentSignal, dft.N); // Flat Top
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyFlatTop(_signalGenerator.currentSignal, resolution); // Flat Top
                         break;
                     case 2:
-                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackman(_signalGenerator.currentSignal, dft.N); // Blackman
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackman(_signalGenerator.currentSignal, resolution); // Blackman
                         break;
                     case 3:
-                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanHarris(_signalGenerator.currentSignal, dft.N); // Blackman–Harris
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanHarris(_signalGenerator.currentSignal, resolution); // Blackman–Harris
                         break;
                     case 4:
-                        _windowFn.CurrentSignalWn = _windowFn.ApplyHamming(_signalGenerator.currentSignal, dft.N); // Hamming
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyHamming(_signalGenerator.currentSignal, resolution); // Hamming
                         break;
                     case 5:
-                        _windowFn.CurrentSignalWn = _windowFn.ApplyNuttall(_signalGenerator.currentSignal, dft.N); // Nuttall
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyNuttall(_signalGenerator.currentSignal, resolution); // Nuttall
                         break;
                     case 6:
-                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanNuttall(_signalGenerator.currentSignal, dft.N); // Blackman–Nuttall
+                        _windowFn.CurrentSignalWn = _windowFn.ApplyBlackmanNuttall(_signalGenerator.currentSignal, resolution); // Blackman–Nuttall
                         break;
                     default:
                         break;
                 }
 
-                // TODO: implement windowing
+                List<Complex> X = new List<Complex>();
 
+                if (DFT_FFT == false)
+                {
+                    X = dft.PerformDFT(_windowFn.CurrentSignalWn);
+                }
+                else
+                {
+                    X = radix2FFT.PerformRadixTwoFFT(_windowFn.CurrentSignalWn, resolution);
+                }
+
+                var Xmag = new List<float>();
+                for (int m = 0; m < resolution; m++)
+                {
+                    Xmag.Add(_ftHelper.Abs(X[m]));
+                }
+
+                // _ftHelper.DEBUG_PrintFT_TextFile(Xmag, resolution, samplingRate);
+
+                if ((string)LinDBswitchBtn.Content == "Logarithmic (dB)")
+                {
+                    plotFT(Xmag);
+                    PlotFTLabels(Xmag);
+                }
+                else
+                {
+                    var XmagDB = _ftHelper.ConvertToDB(Xmag, resolution);
+                    var preppedDB = ftPlotter.PrepDB(XmagDB);
+                    plotFT(preppedDB);
+                    PlotFTLabels(XmagDB);
+                }
             }
             else
             {
-                MessageBox.Show("Signal must be ploted before Window can be applied", "Error");
+                MessageBox.Show("Signal must be plotted and Fourier transform performed before Window can be applied", "Error");
             }
 
 

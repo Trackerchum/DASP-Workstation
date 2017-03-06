@@ -12,7 +12,7 @@ namespace DASPWorkstation
         private int canvasWidth = 1270;
         private int canvasLength = 200;
 
-        List <int> scaledFT = new List<int>();
+        public List <int> scaledFT = new List<int>();
 
 
         public List<float> PrepDB(List<float> XmagDB)
