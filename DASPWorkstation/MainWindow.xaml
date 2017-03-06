@@ -41,11 +41,11 @@
             </Canvas.Background>
         </Canvas>
 
-        <Label x:Name="label2" Content="Resolution:" Canvas.Left="100" Canvas.Top="474"/>
-        <TextBox x:Name="resolutionTxt" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="176" Canvas.Top="478" />
-        <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="126" Canvas.Top="507" Width="134" Height="26" Click="plotDFTBtn_Click" />
-        <Label x:Name="label3" Content="Resolution:" Canvas.Left="300" Canvas.Top="474"/>
-        <ComboBox x:Name="FFT_ResCmb" SelectedIndex="0" Canvas.Left="373" Canvas.Top="475" Width="188" Height="26" >
+        <Label x:Name="label2" Content="Resolution:" Canvas.Left="100" Canvas.Top="521"/>
+        <TextBox x:Name="resolutionTxt" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Canvas.Left="176" Canvas.Top="525" />
+        <Button x:Name="plotDFTBtn" Content="Plot DFT" Canvas.Left="126" Canvas.Top="554" Width="134" Height="26" Click="plotDFTBtn_Click" />
+        <Label x:Name="label3" Content="Resolution:" Canvas.Left="300" Canvas.Top="521"/>
+        <ComboBox x:Name="FFT_ResCmb" SelectedIndex="0" Canvas.Left="373" Canvas.Top="522" Width="188" Height="26" >
             <ComboBoxItem Content="512" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="1024" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="2048" HorizontalAlignment="Left" Width="186"/>
@@ -55,12 +55,12 @@
             <ComboBoxItem Content="32768" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="65536" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
-        <Button x:Name="plotFFTBtn" Content="Plot Radix-2 FFT" Canvas.Left="401" Canvas.Top="507" Width="134" Height="26" Click="plotFFTBtn_Click" />
-        <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="660" Canvas.Top="504" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
+        <Button x:Name="plotFFTBtn" Content="Plot Radix-2 FFT" Canvas.Left="401" Canvas.Top="554" Width="134" Height="26" Click="plotFFTBtn_Click" />
+        <Button x:Name="LinDBswitchBtn" Content="Logarithmic (dB)" Canvas.Left="660" Canvas.Top="551" Width="134" Height="26" Click="LinDBswitchBtn_Click" />
 
-        <Button x:Name="applyWindowBtn" Content="Apply Window" Canvas.Left="1025" Canvas.Top="504" Width="134" Height="26" Click="applyWindowBtn_Click" />
+        <Button x:Name="applyWindowBtn" Content="Apply Window" Canvas.Left="1025" Canvas.Top="551" Width="134" Height="26" Click="applyWindowBtn_Click" />
 
-        <ComboBox x:Name="windowCmb" SelectedIndex="0" Canvas.Left="1182" Canvas.Top="504" Width="188" Height="26" >
+        <ComboBox x:Name="windowCmb" SelectedIndex="0" Canvas.Left="1182" Canvas.Top="551" Width="188" Height="26" >
             <ComboBoxItem Content="Rectangular Window (None)" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Flat Top Window" HorizontalAlignment="Left" Width="186"/>
             <ComboBoxItem Content="Blackman Window" HorizontalAlignment="Left" Width="186"/>
@@ -70,7 +70,7 @@
             <ComboBoxItem Content="Blackman–Nuttall Window" HorizontalAlignment="Left" Width="186"/>
         </ComboBox>
 
-        <Canvas Name="fourierCanvas" Height="202" Canvas.Left="100" Canvas.Top="547" Width="1270" >
+        <Canvas Name="fourierCanvas" Height="202" Canvas.Left="100" Canvas.Top="594" Width="1270" >
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="5"/>
             </Canvas.Background>
@@ -78,12 +78,12 @@
         <Label x:Name="maxSigLbl" Content="1" Canvas.Left="40" Canvas.Top="234" Width="55" HorizontalContentAlignment="Right" />
         <Label x:Name="midSigLbl" Content="0" Canvas.Left="73" Canvas.Top="333"/>
         <Label x:Name="minSigLbl" Content="-1" Canvas.Left="40" Canvas.Top="432" Width="55" HorizontalContentAlignment="Right" />
-        
-        <Label x:Name="maxFtLbl" Content="0" Canvas.Left="40" Canvas.Top="534" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="upperFtLbl" Content="0" Canvas.Left="40" Canvas.Top="584" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="midFtLbl" Content="0" Canvas.Left="40" Canvas.Top="633" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="lowerFtLbl" Content="0" Canvas.Left="40" Canvas.Top="684" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="minFtLbl" Content="0" Canvas.Left="40" Canvas.Top="732" Width="55" HorizontalContentAlignment="Right" />
+
+        <Label x:Name="maxFtLbl" Content="0" Canvas.Left="40" Canvas.Top="581" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="upperFtLbl" Content="0" Canvas.Left="40" Canvas.Top="631" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="midFtLbl" Content="0" Canvas.Left="40" Canvas.Top="680" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="lowerFtLbl" Content="0" Canvas.Left="40" Canvas.Top="731" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="minFtLbl" Content="0" Canvas.Left="40" Canvas.Top="779" Width="55" HorizontalContentAlignment="Right" />
 
     </Canvas>
 </Window>
