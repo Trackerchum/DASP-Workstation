@@ -62,7 +62,7 @@ namespace DASPWorkstation
                 var scaledSignal = signalPlotter.ScaleSignal(signal, samplingRate);
                 using (signalBmp.GetBitmapContext())
                 {
-                    for (int n = 1; n < 1270-1; n++)
+                    for (int n = 1; n < 1270 - 1; n++)
                     {
                         signalBmp.DrawLine(n, scaledSignal[n], n + 1, scaledSignal[n + 1], Colors.Black);
                     }
@@ -73,7 +73,7 @@ namespace DASPWorkstation
                 signalCanvas.Children.Add(waveform);
 
                 maxSigLbl.Content = Math.Round((decimal)signal.Max(), 4);
-                minSigLbl.Content = Math.Round((-1*(decimal)signal.Max()), 4);
+                minSigLbl.Content = Math.Round((-1 * (decimal)signal.Max()), 4);
 
             }
             else
@@ -153,6 +153,8 @@ namespace DASPWorkstation
                 default:
                     break;
             }
+
+            PlotFTFreqLabels();
         }
 
 
@@ -248,27 +250,27 @@ namespace DASPWorkstation
         }
 
 
-        public void plotFT(List <float> FT) 
+        public void plotFT(List<float> FT)
         {
             WriteableBitmap ftBmp = BitmapFactory.New(1270, 202);
             Image ftImage = new Image();
             resolution = FT.Count;
             var scaledFT = ftPlotter.ScaleFT(FT, resolution);
-            
+
             using (ftBmp.GetBitmapContext())
             {
                 if (resolution >= 2540)
                 {
-                    for (int n = 0; n < 1270-1; n++)
+                    for (int n = 0; n < 1270 - 1; n++)
                     {
-                        ftBmp.DrawLine(n, scaledFT[n], n+1, scaledFT[n+1], Colors.Black);
+                        ftBmp.DrawLine(n, scaledFT[n], n + 1, scaledFT[n + 1], Colors.Black);
                     }
                 }
                 else
                 {
                     for (int n = 0; n < scaledFT.Count - 1; n++)
                     {
-                        ftBmp.DrawLine((int)((1269.0f / (scaledFT.Count-1))*n), scaledFT[n], (int)((1269.0f / (scaledFT.Count-1)) * ((float)n+1)), scaledFT[n + 1], Colors.Black);
+                        ftBmp.DrawLine((int)((1269.0f / (scaledFT.Count - 1)) * n), scaledFT[n], (int)((1269.0f / (scaledFT.Count - 1)) * ((float)n + 1)), scaledFT[n + 1], Colors.Black);
                     }
                 }
             }
@@ -352,6 +354,7 @@ namespace DASPWorkstation
 
         }
 
+
         private void PlotFTLabels(List<float> FT)
         {
             var quart = Math.Sqrt((FT.Max() - FT.Min()) * (FT.Max() - FT.Min())) / 4;
@@ -361,6 +364,18 @@ namespace DASPWorkstation
             midFtLbl.Content = Math.Round((decimal)(FT.Max() - (quart * 2)), 2);
             lowerFtLbl.Content = Math.Round((decimal)(FT.Max() - (quart * 3)), 2);
             minFtLbl.Content = Math.Round((decimal)FT.Min(), 2);
+        }
+
+
+        private void PlotFTFreqLabels()
+        {
+            Label lbl;
+
+            for (int n = 1; n <= 12; n++)
+            {
+                lbl = (Label)FindName($"f{n}");
+                lbl.Content = $"{samplingRate/2/n}kHz";
+            }
         }
     }
 }

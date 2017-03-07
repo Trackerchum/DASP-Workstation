@@ -75,15 +75,29 @@
                 <SolidColorBrush Color="White" Opacity="5"/>
             </Canvas.Background>
         </Canvas>
-        <Label x:Name="maxSigLbl" Content="1" Canvas.Left="40" Canvas.Top="234" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="midSigLbl" Content="0" Canvas.Left="73" Canvas.Top="333"/>
-        <Label x:Name="minSigLbl" Content="-1" Canvas.Left="40" Canvas.Top="432" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="maxSigLbl" Content="1" Canvas.Left="28" Canvas.Top="238" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="midSigLbl" Content="0" Canvas.Left="61" Canvas.Top="333"/>
+        <Label x:Name="minSigLbl" Content="-1" Canvas.Left="28" Canvas.Top="428" Width="55" HorizontalContentAlignment="Right" />
 
-        <Label x:Name="maxFtLbl" Content="0" Canvas.Left="40" Canvas.Top="581" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="upperFtLbl" Content="0" Canvas.Left="40" Canvas.Top="631" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="midFtLbl" Content="0" Canvas.Left="40" Canvas.Top="680" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="lowerFtLbl" Content="0" Canvas.Left="40" Canvas.Top="731" Width="55" HorizontalContentAlignment="Right" />
-        <Label x:Name="minFtLbl" Content="0" Canvas.Left="40" Canvas.Top="779" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="maxFtLbl" Content="0" Canvas.Left="28" Canvas.Top="586" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="upperFtLbl" Content="0" Canvas.Left="28" Canvas.Top="633" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="midFtLbl" Content="0" Canvas.Left="28" Canvas.Top="680" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="lowerFtLbl" Content="0" Canvas.Left="28" Canvas.Top="729" Width="55" HorizontalContentAlignment="Right" />
+        <Label x:Name="minFtLbl" Content="0" Canvas.Left="28" Canvas.Top="775" Width="55" HorizontalContentAlignment="Right" />
+
+        <Label x:Name="f0" Content="0Hz" Canvas.Left="88" Canvas.Top="795" Width="30" HorizontalContentAlignment="Center" />
+        <Label x:Name="f1" Content="2kHz" Canvas.Left="191" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f2" Content="4kHz" Canvas.Left="298" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f3" Content="6kHz" Canvas.Left="403" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f4" Content="8kHz" Canvas.Left="508" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f5" Content="10kHz" Canvas.Left="613" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f6" Content="12kHz" Canvas.Left="718" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f7" Content="14kHz" Canvas.Left="824" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f8" Content="16kHz" Canvas.Left="929" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f9" Content="18kHz" Canvas.Left="1034" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f10" Content="20kHz" Canvas.Left="1139" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f11" Content="22kHz" Canvas.Left="1244" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
+        <Label x:Name="f12" Content="24kHz" Canvas.Left="1344" Canvas.Top="795" Width="60" HorizontalContentAlignment="Center" />
 
     </Canvas>
 </Window>
