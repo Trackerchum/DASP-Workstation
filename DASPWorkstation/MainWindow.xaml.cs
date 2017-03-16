@@ -154,7 +154,7 @@ namespace DASPWorkstation
                     break;
             }
 
-            PlotFTFreqLabels();
+            //PlotFTFreqLabels();
         }
 
 
@@ -168,7 +168,7 @@ namespace DASPWorkstation
                     DFT_FFT = false;
                     windowCmb.IsEnabled = true;
                     resolution = int.Parse(resolutionTxt.Text);
-                    var X = dft.PerformDFT(_signalGenerator.currentSignal);
+                    var X = dft.PerformDFT(_signalGenerator.currentSignal, resolution);
                     var Xmag = new List<float>();
                     for (int m = 0; m < resolution; m++)
                     {
@@ -318,7 +318,7 @@ namespace DASPWorkstation
 
                 if (DFT_FFT == false)
                 {
-                    X = dft.PerformDFT(_windowFn.CurrentSignalWn);
+                    X = dft.PerformDFT(_windowFn.CurrentSignalWn, resolution);
                 }
                 else
                 {
@@ -367,15 +367,15 @@ namespace DASPWorkstation
         }
 
 
-        private void PlotFTFreqLabels()
-        {
-            Label lbl;
+        //private void PlotFTFreqLabels()
+        //{
+        //    Label lbl;
 
-            for (int n = 1; n <= 12; n++)
-            {
-                lbl = (Label)FindName($"f{n}");
-                lbl.Content = $"{samplingRate/2/n}kHz";
-            }
-        }
+        //    for (int n = 1; n <= 12; n++)
+        //    {
+        //        lbl = (Label)FindName($"f{n}");
+        //        lbl.Content = $"{samplingRate/2/n}kHz";
+        //    }
+        //}
     }
 }

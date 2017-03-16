@@ -10,9 +10,7 @@ namespace DASPWorkstation
     {
         private List<Complex> X = new List<Complex>();
 
-        public int N;
-
-        public List<Complex> PerformDFT(List<float> signal)
+        public List<Complex> PerformDFT(List<float> signal, int N)
         {
             X = new List<Complex>();
 

@@ -13,9 +13,9 @@ namespace DASPWorkstation.Test
         public void dftFunctionMustReturnTheCorrectNumberOfValues()
         {
             var dft = new DFT();
-            dft.N = 16;
+            int resolution = 16;
             var x = new List<float>(new float[16]);
-            var X = dft.PerformDFT(x);
+            var X = dft.PerformDFT(x, resolution);
 
             Assert.AreEqual(16, x.Count);
         }
@@ -24,9 +24,9 @@ namespace DASPWorkstation.Test
         public void dftFunctionMustReturnTheCorrectValues()
         {
             var dft = new DFT();
-            dft.N = 16;
+            int resolution = 16;
             var x = new List<float>(new float[] { 0.4f, 1.3066f, 1.1314f, 0.235f, 0.8f, 0.5412f, 0.5657f, 2.0457f, -0.4f, -1.3066f, -1.1314f, -0.235f, -0.8f, -0.5412f, -0.5657f, -2.0457f });
-            var X = dft.PerformDFT(x);
+            var X = dft.PerformDFT(x, resolution);
 
             Assert.IsTrue(specHelper.AreApproximatelyEqual(X[0].Real, 0));
             Assert.IsTrue(specHelper.AreApproximatelyEqual(X[0].Imaginary, 0));
@@ -66,10 +66,10 @@ namespace DASPWorkstation.Test
         public void dftFunctionShouldResetOnFurtherUse()
         {
             var dft = new DFT();
-            dft.N = 16;
+            int resolution = 16;
             var x = new List<float>(new float[] { 0.4f, 1.3066f, 1.1314f, 0.235f, 0.8f, 0.5412f, 0.5657f, 2.0457f, -0.4f, -1.3066f, -1.1314f, -0.235f, -0.8f, -0.5412f, -0.5657f, -2.0457f });
-            var X = dft.PerformDFT(x);
-            X = dft.PerformDFT(x);
+            var X = dft.PerformDFT(x, resolution);
+            X = dft.PerformDFT(x, resolution);
 
             Assert.IsTrue(specHelper.AreApproximatelyEqual(X[0].Real, 0));
             Assert.IsTrue(specHelper.AreApproximatelyEqual(X[0].Imaginary, 0));
