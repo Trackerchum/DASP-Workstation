@@ -359,6 +359,9 @@ namespace DASPWorkstation
         {
             var quart = Math.Sqrt((FT.Max() - FT.Min()) * (FT.Max() - FT.Min())) / 4;
 
+            var min = FT.Min();
+            var max = FT.Max();
+
             maxFtLbl.Content = Math.Round((decimal)FT.Max(), 2);
             upperFtLbl.Content = Math.Round((decimal)(FT.Max() - quart), 2);
             midFtLbl.Content = Math.Round((decimal)(FT.Max() - (quart * 2)), 2);
