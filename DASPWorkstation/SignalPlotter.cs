@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace DASPWorkstation
 {
@@ -27,6 +30,24 @@ namespace DASPWorkstation
                 scaledSignal.Add((int)(((signal[n] * -1 / maxSample) + 1) * 100));
             }
             return scaledSignal;
+        }
+
+        public Image GenerateImage(List<int> scaledSignal)
+        {
+            WriteableBitmap signalBmp = BitmapFactory.New(1270, 202);
+            Image waveform = new Image();
+
+           
+            using (signalBmp.GetBitmapContext())
+            {
+                for (int n = 1; n < 1270 - 1; n++)
+                {
+                    signalBmp.DrawLine(n, scaledSignal[n], n + 1, scaledSignal[n + 1], Colors.Black);
+                }
+            }
+            waveform.Source = signalBmp;
+
+            return waveform;
         }
     }
 }
