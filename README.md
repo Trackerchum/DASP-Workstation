@@ -1,2 +1,0 @@
-# DASP-Workstation
-Self explanitory
