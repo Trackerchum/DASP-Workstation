@@ -147,7 +147,7 @@ namespace DASPWorkstation
                     break;
             }
 
-            PlotFTFreqLabels();
+           // PlotFTFreqLabels();
         }
 
 
