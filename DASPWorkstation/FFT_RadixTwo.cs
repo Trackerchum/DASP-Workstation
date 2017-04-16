@@ -22,7 +22,7 @@ namespace DASPWorkstation
         }
 
 
-        public List<int> BitReversal(int N)
+        private List<int> BitReversal(int N)
         {
             var BR_Index = new List<int>(new int[N]);
             BR_Index[0] = 0;
@@ -43,7 +43,7 @@ namespace DASPWorkstation
         }
 
 
-        public List<float> BitReverseSignal(List<int> BR_Index, List<float> signal)
+        private List<float> BitReverseSignal(List<int> BR_Index, List<float> signal)
         {
             var signalBR = new List<float>();
 
@@ -56,7 +56,7 @@ namespace DASPWorkstation
         }
 
 
-        public List<float> FirstStage(List<float> signalBR)
+        private List<float> FirstStage(List<float> signalBR)
         {
             var X_FirstStage = new List<float>(new float[signalBR.Count]);
             float even;
@@ -74,7 +74,7 @@ namespace DASPWorkstation
         }
 
 
-        public List<Complex> LastStages(List<float> X_FirstStage)
+        private List<Complex> LastStages(List<float> X_FirstStage)
         {
             var ftHelper = new FT_Helper();
             var Wdivide = 4;

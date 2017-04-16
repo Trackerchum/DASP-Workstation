@@ -35,6 +35,11 @@ namespace DASPWorkstation
             for (int m = 0; m < N; m++)
             {
                 XmagDB[m] = 20 * (float)Math.Log10(Xmag[m] / (N / 2.0f));
+
+                if(XmagDB[m] < -300)
+                {
+                    XmagDB[m] = -300;
+                }
             }
 
             return XmagDB;

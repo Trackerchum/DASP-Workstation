@@ -337,6 +337,8 @@ namespace DASPWorkstation
             var min = FT.Min();
             var max = FT.Max();
 
+            //_ftHelper.DEBUG_PrintFT_TextFile(FT, resolution, samplingRate);
+
             maxFtLbl.Content = Math.Round((decimal)FT.Max(), 2);
             upperFtLbl.Content = Math.Round((decimal)(FT.Max() - quart), 2);
             midFtLbl.Content = Math.Round((decimal)(FT.Max() - (quart * 2)), 2);
